@@ -68,6 +68,7 @@ public:
 	}
 
 private:
+	//PixyI2C *pixy = new pixy; // Example Constructor
 };
 
 // Macro that supplies the main function entry point for the robot program (note macros aren't cool
