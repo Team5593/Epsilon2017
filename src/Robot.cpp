@@ -30,6 +30,9 @@
 #include "Commands/ExampleCommand.h"
 #include "CommandBase.h"
 
+// Sensor Includes
+#include <Pixy/PixyI2C.h>
+
 class Robot: public frc::IterativeRobot {
 public:
 	void RobotInit() override {
