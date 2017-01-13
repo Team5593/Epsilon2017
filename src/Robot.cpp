@@ -39,6 +39,10 @@ public:
 
 	}
 
+	void RobotPeriodic() override {
+
+	}
+
 	void DisabledInit() override {
 
 	}
