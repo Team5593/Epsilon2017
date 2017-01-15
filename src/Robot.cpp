@@ -40,7 +40,8 @@ public:
 	}
 
 	void RobotPeriodic() override {
-
+		int i = pixy->GetBlocks();
+		SmartDashboard::PutNumber("Blocks", i);
 	}
 
 	void DisabledInit() override {
@@ -72,7 +73,7 @@ public:
 	}
 
 private:
-	//PixyI2C *pixy = new pixy; // Example Constructor
+	//PixyI2C *pixy = new PixyI2C(0x54, I2C::Port::kOnboard); // Example Constructor
 };
 
 // Macro that supplies the main function entry point for the robot program (note macros aren't cool

@@ -20,7 +20,7 @@
 #ifndef _TPIXY_H
 #define _TPIXY_H
 
-#include "I2C.h"
+#include "WPILib.h"
 
 // Communication/misc parameters
 #define PIXY_INITIAL_ARRAYSIZE      30
@@ -88,7 +88,7 @@ struct Block
 template <class LinkType> class TPixy
 {
 public:
-  TPixy(uint16_t arg=PIXY_DEFAULT_ARGVAL, Port );
+  TPixy();
   ~TPixy();
   
   uint16_t GetBlocks(uint16_t maxBlocks=1000);
@@ -111,13 +111,12 @@ private:
 };
 
 
-template <class LinkType> TPixy<LinkType>::TPixy(uint16_t arg)
+template <class LinkType> TPixy<LinkType>::TPixy()
 {
   skipStart = false;
   blockCount = 0;
   blockArraySize = PIXY_INITIAL_ARRAYSIZE;
   blocks = (Block *)malloc(sizeof(Block)*blockArraySize);
-  link.setArg(arg);
 }
 
 template <class LinkType> void TPixy<LinkType>::Init()
