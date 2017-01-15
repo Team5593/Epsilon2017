@@ -73,7 +73,7 @@ public:
 	}
 
 private:
-	//PixyI2C *pixy = new PixyI2C(0x54, I2C::Port::kOnboard); // Example Constructor
+	PixyI2C *pixy = new PixyI2C(0x54, I2C::Port::kOnboard); // Example Constructor
 };
 
 // Macro that supplies the main function entry point for the robot program (note macros aren't cool
