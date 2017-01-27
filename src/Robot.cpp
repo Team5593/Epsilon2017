@@ -27,14 +27,14 @@ void Robot::RobotInit() {
 // This function is called each time a new packet is received from the driver station
 // INCLUDING when the robot is disabled.
 void Robot::RobotPeriodic() {
-	std::cout << "RobotPeriodic" << std::endl;
+	//std::cout << "RobotPeriodic" << std::endl;
 }
 
 // This function is called once each time the robot enters Disabled mode.
 // You can use it to reset any subsystem information you want to clear when
 // the robot is disabled.
 void Robot::DisabledInit() {
-
+	std::cout << "DisabledInit" << std::endl;
 }
 
 // When the robot is in Disabled this method is called each time a new packet is received from the driver station.
@@ -44,6 +44,7 @@ void Robot::DisabledPeriodic() {
 
 // Called each and every time autonomous is entered from another mode.
 void Robot::AutonomousInit() {
+	std::cout << "AutonomousInit" << std::endl;
 	//autonomousCommand = (Command *) chooser->GetSelected();
 	//autonomousCommand->Start();
 }
@@ -55,6 +56,7 @@ void Robot::AutonomousPeriodic() {
 
 // Called each and every time teleop is entered from another mode.
 void Robot::TeleopInit() {
+	std::cout << "TeleopInit" << std::endl;
 	// This makes sure that the autonomous stops running when
 	// teleop starts running. If you want the autonomous to
 	// continue until interrupted by another command, remove
@@ -72,6 +74,7 @@ void Robot::TeleopPeriodic() {
 // Called each and every time test is entered from another mode.
 void Robot::TestInit()
 {
+	std::cout << "TestInit" << std::endl;
 	// Scheduler doesn't get enabled by default in Test mode so if you want to test commands enable it.
 	Scheduler::GetInstance()->SetEnabled(true);
 }

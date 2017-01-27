@@ -1,7 +1,9 @@
 #include "DriveTrain.h"
 #include "../RobotMap.h"
 
-DriveTrain::DriveTrain() : Subsystem("DriveTrain") {
+DriveTrain::DriveTrain(int leftMotorChannel, int rightMotorChannel) : Subsystem("DriveTrain"),
+ _robotDrive(leftMotorChannel, rightMotorChannel)
+{
 
 }
 
@@ -10,13 +12,10 @@ void DriveTrain::InitDefaultCommand() {
 	// SetDefaultCommand(new MySpecialCommand());
 }
 
-// Put methods for controlling this subsystem
-// here. Call these from Commands.
-
 void DriveTrain::TankDrive(double left, double right) {
-	driveTrain.TankDrive(left*DRIVETRAIN_MAX_SPEED, right*DRIVETRAIN_MAX_SPEED);
+	_robotDrive.TankDrive(left*DRIVETRAIN_MAX_SPEED, right*DRIVETRAIN_MAX_SPEED);
 }
 
 void DriveTrain::Stop() {
-	driveTrain.TankDrive(0.0, 0.0);
+	_robotDrive.TankDrive(0.0, 0.0);
 }
