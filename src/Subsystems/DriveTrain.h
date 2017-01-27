@@ -3,12 +3,14 @@
 
 #include <Commands/Subsystem.h>
 #include <RobotDrive.h>
+#include "RobotMap.h"
 
 class DriveTrain : public Subsystem {
-	frc::RobotDrive driveTrain{DRIVETRAIN_LEFT_MOTOR, DRIVETRAIN_LEFT_MOTOR};
+
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
+	frc::RobotDrive driveTrain{DRIVETRAIN_LEFT_MOTOR, DRIVETRAIN_LEFT_MOTOR};
 
 public:
 	DriveTrain();

@@ -1,7 +1,7 @@
 #include "Drive.h"
 
 Drive::Drive() {
-	Requires(DriveTrain);
+	//Requires(CommandBase::driveTrain);
 }
 
 // Called just before this Command runs the first time
