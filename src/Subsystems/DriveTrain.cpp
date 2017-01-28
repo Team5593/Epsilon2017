@@ -13,7 +13,7 @@ void DriveTrain::InitDefaultCommand() {
 }
 
 void DriveTrain::TankDrive(double left, double right) {
-	_robotDrive.TankDrive(left*DRIVETRAIN_MAX_SPEED, right*DRIVETRAIN_MAX_SPEED);
+	_robotDrive.TankDrive(left, right);
 }
 
 void DriveTrain::Stop() {

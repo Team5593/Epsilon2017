@@ -5,6 +5,9 @@
 #include "../Subsystems/DriveTrain.h"
 
 class Drive : public CommandBase {
+private:
+	bool _altSpeedState = false;
+	bool _altButtonLastState = false;
 public:
 	Drive();
 	void Initialize();

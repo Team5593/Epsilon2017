@@ -11,8 +11,19 @@ void Drive::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void Drive::Execute() {
-	double forwardSpeed = -oi->GetThrottleAxis();
-	double headingAngle = oi->GetHeadingAxis();
+	if (_altButtonLastState == false and oi->GetAltSpeedButton() == true) {
+		_altSpeedState = !_altSpeedState;
+	}
+
+	double speed;
+	if (_altSpeedState) {
+		speed = DRIVETRAIN_ALT_MULTIPLIER;
+	}
+	else {
+		speed = DRIVETRAIN_DEFAULT_MULTIPLIER;
+	}
+	double forwardSpeed = -oi->GetThrottleAxis()*speed;
+	double headingAngle = oi->GetHeadingAxis()*speed;
 
 	if (fabs(headingAngle) <= 0.2) headingAngle = 0; // Deadzone TODO: create and convert to some kind of 'deadzone' function
 

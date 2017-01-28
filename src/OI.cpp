@@ -13,6 +13,10 @@ double OI::GetHeadingAxis() {
 	return _driverJoy.GetRawAxis(DRIVER_HEADING_AXIS);
 }
 
+bool OI::GetAltSpeedButton() {
+	return _driverJoy.GetRawButton(DRIVER_ALT_SPEED_BUTTON);
+}
+
 void OI::SetButton1PressedCommand(Command * command) {
 	_joystickButton1.WhenPressed(command);
 }
