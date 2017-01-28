@@ -22,6 +22,10 @@
 // Provide for initialization at robot power-on.
 void Robot::RobotInit() {
 	std::cout << "RobotInit" << std::endl;
+
+	CommandBase::init();
+
+	_shootBallCommand = std::make_unique<ShootBallCommand>();
 }
 
 // This function is called each time a new packet is received from the driver station
@@ -57,6 +61,9 @@ void Robot::AutonomousPeriodic() {
 // Called each and every time teleop is entered from another mode.
 void Robot::TeleopInit() {
 	std::cout << "TeleopInit" << std::endl;
+
+	CommandBase::oi->SetButton1PressedCommand(_shootBallCommand.get());
+
 	// This makes sure that the autonomous stops running when
 	// teleop starts running. If you want the autonomous to
 	// continue until interrupted by another command, remove

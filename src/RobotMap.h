@@ -7,10 +7,11 @@ constexpr double DRIVETRAIN_MAX_SPEED = 0.8;
 
 // Driver Mapping
 constexpr int DRIVER_JOY_NUM = 0;
-constexpr int DRIVER_THROTTLE_AXIS = 1;
-constexpr int DRIVER_HEADING_AXIS = 4;
+
 
 // Assistant Mapping
 constexpr int ASSISTANT_JOY_NUM = 1;
+
+const int SHOOTER_TALON_PIN = 2; // ToDo: Set to proper value.
 
 #endif  // ROBOTMAP_H

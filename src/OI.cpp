@@ -1,19 +1,18 @@
 #include "OI.h"
 
-OI::OI() {
+OI::OI(int joystickNumber) :
+	_driverJoy(joystickNumber),
+	_joystickButton1(&_driverJoy, 1)
+{ }
 
+double OI::GetThrottleAxis() {
+	return _driverJoy.GetRawAxis(DRIVER_THROTTLE_AXIS);
 }
 
-double OI::GetThrottleAxis(int JoyNum) {
-	switch(JoyNum) {
-	case DRIVER_JOY_NUM: return driverJoy->GetRawAxis(DRIVER_THROTTLE_AXIS); break;
-	default: return 0.0; break;
-	}
+double OI::GetHeadingAxis() {
+	return _driverJoy.GetRawAxis(DRIVER_HEADING_AXIS);
 }
 
-double OI::GetHeadingAxis(int JoyNum) {
-	switch(JoyNum) {
-	case DRIVER_JOY_NUM: return driverJoy->GetRawAxis(DRIVER_HEADING_AXIS); break;
-	default: return 0.0; break;
-	}
+void OI::SetButton1PressedCommand(Command * command) {
+	_joystickButton1.WhenPressed(command);
 }

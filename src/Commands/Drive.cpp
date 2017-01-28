@@ -1,7 +1,7 @@
 #include "Drive.h"
 
 Drive::Drive() {
-	//Requires(CommandBase::driveTrain);
+	Requires(CommandBase::driveTrain.get());
 }
 
 // Called just before this Command runs the first time
@@ -11,15 +11,20 @@ void Drive::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void Drive::Execute() {
-	double forwardSpeed = -oi->GetThrottleAxis(DRIVER_JOY_NUM);
-	double headingAngle = oi->GetHeadingAxis(DRIVER_JOY_NUM);
+	double forwardSpeed = -oi->GetThrottleAxis();
+	double headingAngle = oi->GetHeadingAxis();
 
 	if (fabs(headingAngle) <= 0.2) headingAngle = 0; // Deadzone TODO: create and convert to some kind of 'deadzone' function
 
 	driveTrain->TankDrive(forwardSpeed+headingAngle, forwardSpeed-headingAngle);
+
+	//Robot::drivetrain->Drive(Robot::oi->GetJoystick());
 }
 
-// Make this return true when this Command no longer needs to run execute()
+// isFinished - Our isFinished method always returns false meaning this command never completes on it's own.
+// The reason we do this is that this command will be set as the default command for the subsystem.
+// This means that whenever the subsystem is not running another command, it will run this command.
+// If any other command is scheduled it will interrupt this command, then return to this command when the other command completes.
 bool Drive::IsFinished() {
 	return false;
 }
@@ -32,5 +37,5 @@ void Drive::End() {
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void Drive::Interrupted() {
-
+	End();
 }

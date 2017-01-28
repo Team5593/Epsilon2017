@@ -1,5 +1,5 @@
 #include "DriveTrain.h"
-#include "../RobotMap.h"
+#include "../Commands/Drive.h"
 
 DriveTrain::DriveTrain(int leftMotorChannel, int rightMotorChannel) : Subsystem("DriveTrain"),
  _robotDrive(leftMotorChannel, rightMotorChannel)
@@ -9,7 +9,7 @@ DriveTrain::DriveTrain(int leftMotorChannel, int rightMotorChannel) : Subsystem(
 
 void DriveTrain::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
-	// SetDefaultCommand(new MySpecialCommand());
+	SetDefaultCommand(new Drive());
 }
 
 void DriveTrain::TankDrive(double left, double right) {

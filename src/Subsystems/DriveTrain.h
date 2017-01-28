@@ -8,8 +8,8 @@
 class DriveTrain : public Subsystem {
 
 private:
-	// DON'T intialise any objects here. The FPGA and other initialisation tasks
-	// may not have been complete. Instead do the initialisation in the class constructor.
+	// DON'T initialize any objects here. The FPGA and other initialization tasks
+	// may not have completed. Instead do the initialization in the class constructor.
 	//frc::RobotDrive driveTrain{DRIVETRAIN_LEFT_MOTOR, DRIVETRAIN_LEFT_MOTOR};
 	frc::RobotDrive _robotDrive;
 

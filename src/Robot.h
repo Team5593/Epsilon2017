@@ -20,11 +20,10 @@
 
 #include "WPILib.h"
 #include "RobotMap.h"
+#include "Commands/ShootBallCommand.h"
 
 class Robot: public IterativeRobot {
 public:
-	//create static objects of the subsystems
-	//static OI * oi;
 
 private:
 	//LiveWindow * lw;
@@ -45,7 +44,7 @@ private:
 	//SendableChooser *_chooser { nullptr };
 
 	// Commands used in Test mode to verify operation.
-	//std::unique_ptr<SetTeamNumCmdGroup> _setTeamNumCmdGroup{ nullptr };
+	std::unique_ptr<ShootBallCommand> _shootBallCommand{ nullptr };
 };
 
 #endif /* ROBOT_H_ */
