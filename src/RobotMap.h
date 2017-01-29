@@ -7,6 +7,8 @@ constexpr int DRIVETRAIN_RIGHT_MOTOR = 1;
 constexpr double DRIVETRAIN_MAX_SPEED = 1.0;
 constexpr double DRIVETRAIN_DEFAULT_MULTIPLIER = 0.5;
 constexpr double DRIVETRAIN_ALT_MULTIPLIER = 0.5;
+constexpr int DRIVER_THROTTLE_AXIS = 1;
+constexpr int DRIVER_HEADING_AXIS = 4;
 
 // Lifting
 const int LIFTING_SPARK_LEFT_PIN = 3;

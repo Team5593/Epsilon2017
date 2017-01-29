@@ -2,9 +2,7 @@
 #define OI_H
 
 #include <WPILib.h>
-
-constexpr int DRIVER_THROTTLE_AXIS = 1;
-constexpr int DRIVER_HEADING_AXIS = 4;
+#include "RobotMap.h"
 
 class OI {
 public:
