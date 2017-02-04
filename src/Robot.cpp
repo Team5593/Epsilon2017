@@ -26,6 +26,7 @@ void Robot::RobotInit() {
 	CommandBase::init();
 
 	_shootBallCommand = std::make_unique<ShootBallCommand>();
+	_autoRotate = std::make_unique<AutoRotate>();
 }
 
 // This function is called each time a new packet is received from the driver station
@@ -49,6 +50,8 @@ void Robot::DisabledPeriodic() {
 // Called each and every time autonomous is entered from another mode.
 void Robot::AutonomousInit() {
 	std::cout << "AutonomousInit" << std::endl;
+	_autoRotate->Initialize(90);
+	_autoRotate->Start();
 	//autonomousCommand = (Command *) chooser->GetSelected();
 	//autonomousCommand->Start();
 }
@@ -64,6 +67,8 @@ void Robot::TeleopInit() {
 
 	CommandBase::oi->SetButton1PressedCommand(_shootBallCommand.get());
 
+	CommandBase::driveTrain->GyroCalibrate();
+
 	// This makes sure that the autonomous stops running when
 	// teleop starts running. If you want the autonomous to
 	// continue until interrupted by another command, remove
@@ -76,6 +81,7 @@ void Robot::TeleopInit() {
 // When the robot is in Teleop mode this method is called each time a new packet is received from the driver station.
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
+	SmartDashboard::PutNumber("Gyro Angle", CommandBase::driveTrain->GetGyroAngle());
 }
 
 // Called each and every time test is entered from another mode.

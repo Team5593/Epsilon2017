@@ -21,6 +21,7 @@
 #include "WPILib.h"
 #include "RobotMap.h"
 #include "Commands/ShootBallCommand.h"
+#include "Commands/AutoRotate.h"
 
 class Robot: public IterativeRobot {
 public:
@@ -45,6 +46,7 @@ private:
 
 	// Commands used in Test mode to verify operation.
 	std::unique_ptr<ShootBallCommand> _shootBallCommand{ nullptr };
+	std::unique_ptr<AutoRotate> _autoRotate{ nullptr };
 };
 
 #endif /* ROBOT_H_ */

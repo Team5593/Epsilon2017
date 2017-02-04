@@ -7,6 +7,11 @@ constexpr int DRIVETRAIN_RIGHT_MOTOR = 1;
 constexpr double DRIVETRAIN_MAX_SPEED = 1.0;
 constexpr double DRIVETRAIN_DEFAULT_MULTIPLIER = 0.5;
 constexpr double DRIVETRAIN_ALT_MULTIPLIER = 0.5;
+constexpr int DRIVETRAIN_ENC_LEFT_A = 9;
+constexpr int DRIVETRAIN_ENC_LEFT_B = 8;
+constexpr int DRIVETRAIN_ENC_RIGHT_A = 7;
+constexpr int DRIVETRAIN_ENC_RIGHT_B = 6;
+constexpr int DRIVETRAIN_ANALOG_GYRO = 0;
 constexpr int DRIVER_THROTTLE_AXIS = 1;
 constexpr int DRIVER_HEADING_AXIS = 4;
 
