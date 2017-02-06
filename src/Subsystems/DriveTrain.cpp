@@ -7,12 +7,15 @@ DriveTrain::DriveTrain(int leftMotorChannel, int rightMotorChannel, int encLeftC
  _encRight(encRightChannelA, encRightChannelB),
  _gyro(analogGyroChannel)
 {
-
+	_encLeft.SetDistancePerPulse(_distancePerPulse);
+	_encLeft.SetReverseDirection(true);
+	_encRight.SetDistancePerPulse(_distancePerPulse);
 }
 
 void DriveTrain::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
-	SetDefaultCommand(new Drive());
+	//SetDefaultCommand(new Drive());
+	_robotDrive.SetExpiration(0.05);
 }
 
 void DriveTrain::TankDrive(double left, double right) {
@@ -29,6 +32,27 @@ void DriveTrain::GyroReset() {
 
 double DriveTrain::GetGyroAngle() {
 	return _gyro.GetAngle();
+}
+
+double DriveTrain::EncGetLeft(){
+	return _encLeft.Get();
+}
+
+double DriveTrain::EncGetRight(){
+	return _encRight.Get();
+}
+
+void DriveTrain::EncResetLeft(){
+	_encLeft.Reset();
+}
+
+void DriveTrain::EncResetRight(){
+	_encRight.Reset();
+}
+
+void DriveTrain::EncResetAll(){
+	EncResetLeft();
+	EncResetRight();
 }
 
 void DriveTrain::Stop() {

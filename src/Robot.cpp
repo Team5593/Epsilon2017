@@ -27,6 +27,7 @@ void Robot::RobotInit() {
 
 	_shootBallCommand = std::make_unique<ShootBallCommand>();
 	_autoRotate = std::make_unique<AutoRotate>();
+	_autoMove = std::make_unique<AutoMove>();
 }
 
 // This function is called each time a new packet is received from the driver station
@@ -50,8 +51,8 @@ void Robot::DisabledPeriodic() {
 // Called each and every time autonomous is entered from another mode.
 void Robot::AutonomousInit() {
 	std::cout << "AutonomousInit" << std::endl;
-	_autoRotate->Initialize(90);
-	_autoRotate->Start();
+	_autoMove->Initialize(250);
+	_autoMove->Start();
 	//autonomousCommand = (Command *) chooser->GetSelected();
 	//autonomousCommand->Start();
 }
@@ -59,6 +60,7 @@ void Robot::AutonomousInit() {
 // When the robot is in Autonomous mode this method is called each time a new packet is received from the driver station.
 void Robot::AutonomousPeriodic() {
 	Scheduler::GetInstance()->Run();
+	SmartDashboard::PutNumber("Enc Left", CommandBase::driveTrain->EncGetLeft());
 }
 
 // Called each and every time teleop is entered from another mode.

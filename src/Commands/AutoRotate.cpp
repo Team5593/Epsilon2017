@@ -15,9 +15,10 @@ void AutoRotate::Initialize(double relativeAngle) {
 // Called repeatedly when this Command is scheduled to run
 void AutoRotate::Execute() {
 	//std::cout << "AutoRotate::Execute" << std::endl;
+	SmartDashboard::PutNumber("CurrentGyroAngle", driveTrain->GetGyroAngle());
 	if (driveTrain->GetGyroAngle()<_relativeAngle) {
-		driveTrain->TankDrive(0.4, -0.4);
-	} else driveTrain->TankDrive(-0.4, 0.4);
+		driveTrain->TankDrive(0.5, -0.5);
+	} else driveTrain->TankDrive(-0.5, 0.5);
 }
 
 // Make this return true when this Command no longer needs to run execute()

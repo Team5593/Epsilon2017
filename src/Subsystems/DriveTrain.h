@@ -18,6 +18,8 @@ private:
 	frc::Encoder _encRight;
 	frc::AnalogGyro _gyro;
 
+	double _distancePerPulse = 4 * 3.14159 / 250;
+
 public:
 	DriveTrain(int leftMotorChannel, int rightMotorChannel, int encLeftChannelA, int encLeftChannelB, int encRightChannelA, int encRightChannelB, int analogGyroChannel);
 	void InitDefaultCommand();
@@ -27,7 +29,12 @@ public:
 	void GyroCalibrate();
 	void GyroReset();
 	double GetGyroAngle();
-
+	//Encoders
+	double EncGetLeft();
+	double EncGetRight();
+	void EncResetLeft();
+	void EncResetRight();
+	void EncResetAll();
 
 	void Stop();
 };
