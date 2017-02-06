@@ -20,7 +20,7 @@
 
 #include <Commands/CommandGroup.h>
 #include "Commands/AutoRotate.h"
-#include "DriveSetDistanceCommand.h"
+#include "Commands/AutoMove.h"
 #include "PlaceCogCommand.h"
 
 #define ROTATE_COMMAND_EXPIRY_SECONDS 5.0		// If the auto rotate takes longer than this assume something has gone wrong and terminate the command.
@@ -31,7 +31,7 @@ public:
 	DeliverGearCommandGroup(double rotationAngle, double firstForwardDistance);
 private:
 	AutoRotate * _autoRotateCommand { nullptr };
-	DriveSetDistanceCommand * _driveSetDistanceCommand { nullptr};
+	AutoMove * _autoMoveCommand { nullptr};
 	PlaceCogCommand * _placeCogCommand { nullptr};
 };
 
