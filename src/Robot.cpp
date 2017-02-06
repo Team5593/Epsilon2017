@@ -93,8 +93,16 @@ void Robot::TestInit()
 	// Scheduler doesn't get enabled by default in Test mode so if you want to test commands enable it.
 	Scheduler::GetInstance()->SetEnabled(true);
 
-	_deliverGearCommandGroup = std::make_unique<DeliverGearCommandGroup>(90.0, 2000.0);	// Turn 90 degrees and then drive forwards 2m.
-	CommandBase::oi->SetButton2PressedCommand(_deliverGearCommandGroup.get());
+	//_deliverGearCommandGroup = std::make_unique<DeliverGearCommandGroup>(90.0, 2000.0);	// Turn 90 degrees and then drive forwards 2m.
+	//CommandBase::oi->SetButton2PressedCommand(_deliverGearCommandGroup.get());
+
+	AutoRotate autoRotate{};
+	autoRotate.Initialize(90);
+	CommandBase::oi->SetButton1PressedCommand((Command *)&autoRotate);
+
+	AutoMove autoMove{};
+	autoMove.Initialize(24);
+	CommandBase::oi->SetButton2PressedCommand((Command *)&autoMove);
 }
 
 // When the robot is in Test mode this method is called each time a new packet is received from the driver station.
