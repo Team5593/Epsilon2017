@@ -1,5 +1,5 @@
 // ============================================================================
-// FileName: ShooterBallCommand.cpp
+// FileName: PlaceCogCommand.cpp
 //
 // Description:
 // See header.
@@ -8,44 +8,42 @@
 // Team 5593
 //
 // History:
-// 28 Jan 2017	Team 5593	Created.
+// 04 Feb 2017	Team 5593	Created.
 //
 // License:
 // Public Domain
 // ============================================================================
 
-#include "ShootBallCommand.h"
+#include "PlaceCogCommand.h"
 
-ShootBallCommand::ShootBallCommand() {
+PlaceCogCommand::PlaceCogCommand() {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
-	Requires(CommandBase::Shooter.get());
 }
 
 // Called just before this Command runs the first time
-void ShootBallCommand::Initialize() {
-	std::cout << "ShootBallCommand::Initialize." << std::endl;
+void PlaceCogCommand::Initialize() {
+	// ToDo: Whatever needs to happen to get the cameras ready to position the robot to get the cog delivered.
 }
 
 // Called repeatedly when this Command is scheduled to run
-void ShootBallCommand::Execute() {
-	std::cout << "ShootBallCommand::Execute." << std::endl;
+void PlaceCogCommand::Execute() {
+	// ToDo: Whatever needs to happen to take the input from the cameras and adjust the robot's position to get the cog delivered.
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool ShootBallCommand::IsFinished() {
-	// ToDo: There needs to be some timing factor that sets is finished to true after enough
-	// time has passed for the shot to have been completed.
-	return true;
+bool PlaceCogCommand::IsFinished() {
+	// ToDo: Whatever needs to happen to detect that the cog has been successfully delivered.
+	return false;
 }
 
 // Called once after isFinished returns true
-void ShootBallCommand::End() {
-	std::cout << "ShootBallCommand::End." << std::endl;
+void PlaceCogCommand::End() {
+
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void ShootBallCommand::Interrupted() {
+void PlaceCogCommand::Interrupted() {
 
 }

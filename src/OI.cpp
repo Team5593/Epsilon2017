@@ -2,7 +2,8 @@
 
 OI::OI(int joystickNumber) :
 	_driverJoy(joystickNumber),
-	_joystickButton1(&_driverJoy, 1)
+	_joystickButton1(&_driverJoy, 1),
+	_joystickButton2(&_driverJoy, 2)
 { }
 
 double OI::GetThrottleAxis() {
@@ -19,4 +20,8 @@ bool OI::GetAltSpeedButton() {
 
 void OI::SetButton1PressedCommand(Command * command) {
 	_joystickButton1.WhenPressed(command);
+}
+
+void OI::SetButton2PressedCommand(Command * command) {
+	_joystickButton2.WhenPressed(command);
 }
