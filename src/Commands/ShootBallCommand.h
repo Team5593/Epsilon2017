@@ -19,6 +19,7 @@
 #define ShootBallCommand_H
 
 #include "../CommandBase.h"
+#include "../Subsystems/ShooterSubsystem.h"
 
 class ShootBallCommand : public CommandBase {
 public:

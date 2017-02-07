@@ -30,6 +30,7 @@ void ShootBallCommand::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void ShootBallCommand::Execute() {
 	std::cout << "ShootBallCommand::Execute." << std::endl;
+	CommandBase::Shooter->Set(-0.95);
 }
 
 // Make this return true when this Command no longer needs to run execute()
