@@ -22,6 +22,7 @@
 
 #include "I2C.h"
 #include "SensorBase.h"
+#include "Timer.h"
 
 // Communication/misc parameters
 #define PIXY_INITIAL_ARRAYSIZE      30
@@ -135,7 +136,7 @@ template <class LinkType> bool TPixy<LinkType>::GetStart()
     w = link.getWord();
     if (w==0 && lastw==0)
   {
-    Timer* delay = new Timer();
+    frc::Timer* delay = new frc::Timer();
     delay->Start();
     while (!delay->HasPeriodPassed(0.00005)) {
       // Wait 50 microseconds
