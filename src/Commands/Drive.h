@@ -6,8 +6,7 @@
 
 class Drive : public CommandBase {
 private:
-	bool _altSpeedState = false;
-	bool _altButtonLastState = false;
+	bool _speedShift = false;
 public:
 	Drive();
 	void Initialize();

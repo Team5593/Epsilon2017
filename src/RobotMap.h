@@ -5,8 +5,8 @@
 constexpr int DRIVETRAIN_LEFT_MOTOR = 0;
 constexpr int DRIVETRAIN_RIGHT_MOTOR = 1;
 constexpr double DRIVETRAIN_MAX_SPEED = 1.0;
-constexpr double DRIVETRAIN_DEFAULT_MULTIPLIER = 0.5;
-constexpr double DRIVETRAIN_ALT_MULTIPLIER = 0.5;
+constexpr double DRIVETRAIN_DEFAULT_SPEED = 0.5;
+constexpr double DRIVETRAIN_SHIFT_SPEED = 1.0;
 constexpr int DRIVETRAIN_ENC_LEFT_A = 9;
 constexpr int DRIVETRAIN_ENC_LEFT_B = 8;
 constexpr int DRIVETRAIN_ENC_RIGHT_A = 7;
@@ -30,7 +30,7 @@ const bool SUCKER_DEFAULT_DIRECTION = 1; // Inverted
 
 // Driver Mapping
 constexpr int DRIVER_JOY_NUM = 0;
-constexpr int DRIVER_ALT_SPEED_BUTTON = 6;
+constexpr int DRIVER_SHIFT_BUTTON = 6;
 
 // Assistant Mapping
 constexpr int ASSISTANT_JOY_NUM = 1;

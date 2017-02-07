@@ -11,25 +11,13 @@ void Drive::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void Drive::Execute() {
-	if (_altButtonLastState == false and oi->GetAltSpeedButton() == true) {
-		_altSpeedState = !_altSpeedState;
-	}
+	double speed = (oi->GetShiftButton())? DRIVETRAIN_SHIFT_SPEED : DRIVETRAIN_DEFAULT_SPEED;
+	double forwardSpeed = -oi->GetThrottleAxis();
+	double headingAngle = oi->GetHeadingAxis();
 
-	double speed;
-	if (_altSpeedState) {
-		speed = DRIVETRAIN_ALT_MULTIPLIER;
-	}
-	else {
-		speed = DRIVETRAIN_DEFAULT_MULTIPLIER;
-	}
-	double forwardSpeed = -oi->GetThrottleAxis()*speed;
-	double headingAngle = oi->GetHeadingAxis()*speed;
+	if (fabs(headingAngle) <= 0.2) headingAngle = 0;
 
-	if (fabs(headingAngle) <= 0.2) headingAngle = 0; // Deadzone TODO: create and convert to some kind of 'deadzone' function
-
-	driveTrain->TankDrive(forwardSpeed+headingAngle, forwardSpeed-headingAngle);
-
-	//Robot::drivetrain->Drive(Robot::oi->GetJoystick());
+	driveTrain->TankDrive(forwardSpeed*speed+headingAngle, forwardSpeed*speed-headingAngle);
 }
 
 // isFinished - Our isFinished method always returns false meaning this command never completes on it's own.
