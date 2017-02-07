@@ -29,6 +29,7 @@ public:
 	ShooterSubsystem(int talonShooterPin);
 	void InitDefaultCommand();
 	void ActivateShooter(int milliseconds);
+	void Set(double speed);
 };
 
 #endif  // ShooterSubsystem_H

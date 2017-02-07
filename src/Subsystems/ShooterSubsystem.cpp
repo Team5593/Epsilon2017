@@ -34,3 +34,8 @@ void ShooterSubsystem::InitDefaultCommand() {
 void ShooterSubsystem::ActivateShooter(int milliseconds) {
 	// ToDo
 }
+
+
+void ShooterSubsystem::Set(double speed) {
+	_shooterTalon.Set(speed);
+}
