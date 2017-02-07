@@ -14,8 +14,10 @@ double OI::GetHeadingAxis() {
 	return _driverJoy.GetRawAxis(DRIVER_HEADING_AXIS);
 }
 
-bool OI::GetAltSpeedButton() {
-	return _driverJoy.GetRawButton(DRIVER_ALT_SPEED_BUTTON);
+bool OI::GetShiftButton() {
+	bool state = _driverJoy.GetRawButton(DRIVER_SHIFT_BUTTON);
+	//std::cout << "Shift Button Checked: " << state << std::endl;
+	return state;
 }
 
 void OI::SetButton1PressedCommand(Command * command) {
