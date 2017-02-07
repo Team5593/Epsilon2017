@@ -7,7 +7,7 @@
 #include <AnalogGyro.h>
 #include "RobotMap.h"
 
-class DriveTrain : public Subsystem {
+class DriveTrain : public frc::Subsystem {
 
 private:
 	// DON'T initialize any objects here. The FPGA and other initialization tasks
