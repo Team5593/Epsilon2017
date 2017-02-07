@@ -14,7 +14,7 @@ DriveTrain::DriveTrain(int leftMotorChannel, int rightMotorChannel, int encLeftC
 
 void DriveTrain::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
-	//SetDefaultCommand(new Drive());
+	SetDefaultCommand(new Drive());
 	_robotDrive.SetExpiration(0.05);
 }
 
