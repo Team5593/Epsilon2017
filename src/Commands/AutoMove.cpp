@@ -6,9 +6,17 @@ AutoMove::AutoMove() {
 }
 
 // Called just before this Command runs the first time
+void AutoMove::Initialize(double relativeDistance, double speed) {
+	_relativeDistance = relativeDistance/(4* 3.14159)*250;
+	_speed = speed;
+	driveTrain->EncResetAll();
+	driveTrain->GyroReset();
+}
+
 void AutoMove::Initialize(double relativeDistance) {
 	_relativeDistance = relativeDistance/(4* 3.14159)*250;
 	driveTrain->EncResetAll();
+	driveTrain->GyroReset();
 }
 
 // Called repeatedly when this Command is scheduled to run
