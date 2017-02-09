@@ -24,6 +24,7 @@
 #include "Commands/AutoRotate.h"
 #include "Commands/AutoMove.h"
 #include "Commands/DeliverGear/DeliverGearCommandGroup.h"
+#include "Commands/BallPickupToggle.h"
 
 class Robot: public IterativeRobot {
 public:
@@ -51,6 +52,7 @@ private:
 	std::unique_ptr<AutoRotate> _autoRotate{ nullptr };
 	std::unique_ptr<AutoMove> _autoMove{ nullptr };
 	std::unique_ptr<DeliverGearCommandGroup> _deliverGearCommandGroup { nullptr };
+	std::unique_ptr<BallPickupToggle> _ballPickupToggle{ nullptr };
 };
 
 #endif /* ROBOT_H_ */
