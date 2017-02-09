@@ -1,20 +1,12 @@
 #include "AutoMove.h"
 
-AutoMove::AutoMove() {
-	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(Robot::chassis.get());
+AutoMove::AutoMove(double relativeDistance, double speed) {
+	_relativeDistance = relativeDistance/(4* 3.14159)*250;
+	_speed = speed;
 }
 
 // Called just before this Command runs the first time
-void AutoMove::Initialize(double relativeDistance, double speed) {
-	_relativeDistance = relativeDistance/(4* 3.14159)*250;
-	_speed = speed;
-	driveTrain->EncResetAll();
-	driveTrain->GyroReset();
-}
-
-void AutoMove::Initialize(double relativeDistance) {
-	_relativeDistance = relativeDistance/(4* 3.14159)*250;
+void AutoMove::Initialize() {
 	driveTrain->EncResetAll();
 	driveTrain->GyroReset();
 }
