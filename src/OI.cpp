@@ -1,9 +1,7 @@
 #include "OI.h"
 
 OI::OI(int joystickNumber) :
-	_driverJoy(joystickNumber),
-	_joystickButton1(&_driverJoy, 1),
-	_joystickButton2(&_driverJoy, 2)
+	_driverJoy(joystickNumber)
 { }
 
 double OI::GetThrottleAxis() {
@@ -20,10 +18,7 @@ bool OI::GetShiftButton() {
 	return state;
 }
 
-void OI::SetButton1PressedCommand(Command * command) {
-	_joystickButton1.WhenPressed(command);
-}
-
-void OI::SetButton2PressedCommand(Command * command) {
-	_joystickButton2.WhenPressed(command);
+void OI::SetButtonPressedCommand(int buttonNum, Command * command) {
+	JoystickButton* button = new JoystickButton(&_driverJoy, buttonNum);
+	button->WhenPressed(command);
 }

@@ -9,14 +9,12 @@ public:
 	OI(int joystickNumber);
 	double GetThrottleAxis();
 	double GetHeadingAxis();
-	bool GetAltSpeedButton();
-	void SetButton1PressedCommand(Command * command);
-	void SetButton2PressedCommand(Command * command);
+	bool GetShiftButton();
+	void SetButtonPressedCommand(int buttonNum, Command * command);
 
-private:
 	Joystick _driverJoy;
-	JoystickButton _joystickButton1;
-	JoystickButton _joystickButton2;
+private:
+
 };
 
 #endif  // OI_H
