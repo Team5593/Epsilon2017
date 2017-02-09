@@ -19,6 +19,11 @@ bool OI::GetShiftButton() {
 }
 
 void OI::SetButtonPressedCommand(int buttonNum, Command * command) {
+<<<<<<< HEAD
 	JoystickButton* button = new JoystickButton(&_driverJoy, buttonNum);
 	button->WhenPressed(command);
+=======
+	JoystickButton button {_driverJoy.m_port, buttonNum};
+	button.WhenPressed(command);
+>>>>>>> origin/master
 }
