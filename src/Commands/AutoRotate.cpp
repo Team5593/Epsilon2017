@@ -1,14 +1,12 @@
 #include "AutoRotate.h"
 
-AutoRotate::AutoRotate() {
-	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(Robot::chassis.get());
+AutoRotate::AutoRotate(double relativeAngle): _relativeAngle(relativeAngle) {
+
 }
 
 // Called just before this Command runs the first time
-void AutoRotate::Initialize(double relativeAngle) {
+void AutoRotate::Initialize() {
 	std::cout << "AutoRotate::Initialize" << std::endl;
-	_relativeAngle = relativeAngle;
 	driveTrain->GyroReset();
 }
 
