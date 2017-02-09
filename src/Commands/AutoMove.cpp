@@ -23,14 +23,10 @@ void AutoMove::Initialize(double relativeDistance) {
 void AutoMove::Execute() {
 	_leftFinished=fabs(driveTrain->EncGetLeft()) >= fabs(_relativeDistance);
 	_rightFinished=fabs(driveTrain->EncGetRight()) >= fabs(_relativeDistance);
-	double proportion = (driveTrain-> EncGetLeft() - driveTrain-> EncGetRight()) / 250;
+	double proportion = (driveTrain->GetGyroAngle()) / 180;
 	int inverted = fabs(_relativeDistance) / _relativeDistance;
 
-	//if (driveTrain->EncGetLeft()<_relativeDistance) {
-	//		driveTrain->TankDrive(0.3*!_leftFinished/*+proportion*/, 0.3*!_rightFinished/*+proportion*/);
-	//} else driveTrain->TankDrive(-0.5-proportion, -0.5-proportion);
-
-	driveTrain->TankDrive(0.45*!_leftFinished*inverted-proportion, 0.45*!_rightFinished*inverted+proportion);
+	driveTrain->TankDrive(_speed*!_leftFinished*inverted-proportion, _speed*!_rightFinished*inverted+proportion);
 
 
 }
