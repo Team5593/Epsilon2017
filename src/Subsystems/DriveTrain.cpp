@@ -1,7 +1,8 @@
 #include "DriveTrain.h"
 #include "../Commands/Drive.h"
 
-DriveTrain::DriveTrain(int leftMotorChannel, int rightMotorChannel, int encLeftChannelA, int encLeftChannelB, int encRightChannelA, int encRightChannelB, int analogGyroChannel) : Subsystem("DriveTrain"),
+DriveTrain::DriveTrain(int leftMotorChannel, int rightMotorChannel, int encLeftChannelA, int encLeftChannelB, int encRightChannelA, int encRightChannelB, int analogGyroChannel) :
+	frc::Subsystem("DriveTrain"),
  _robotDrive(leftMotorChannel, rightMotorChannel),
  _encLeft(encLeftChannelA, encLeftChannelB),
  _encRight(encRightChannelA, encRightChannelB),
@@ -10,16 +11,17 @@ DriveTrain::DriveTrain(int leftMotorChannel, int rightMotorChannel, int encLeftC
 	_encLeft.SetDistancePerPulse(_distancePerPulse);
 	_encLeft.SetReverseDirection(true);
 	_encRight.SetDistancePerPulse(_distancePerPulse);
+	_robotDrive.SetExpiration(0.1);
 }
 
 void DriveTrain::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
-	SetDefaultCommand(new Drive());
-	_robotDrive.SetExpiration(0.05);
+	//SetDefaultCommand(new Drive());
 }
 
 void DriveTrain::TankDrive(double left, double right) {
 	_robotDrive.TankDrive(left, right);
+
 }
 
 void DriveTrain::GyroCalibrate() {
