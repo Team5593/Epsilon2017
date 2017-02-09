@@ -28,6 +28,8 @@ void Robot::RobotInit() {
 	_shootBallCommand = std::make_unique<ShootBallCommand>();
 	_autoRotate = std::make_unique<AutoRotate>();
 	_autoMove = std::make_unique<AutoMove>();
+	_ballPickupToggle = std::make_unique<BallPickupToggle>();
+	_deliverGearCommandGroup = std::make_unique<DeliverGearCommandGroup>();
 }
 
 // This function is called each time a new packet is received from the driver station
@@ -41,6 +43,7 @@ void Robot::RobotPeriodic() {
 // the robot is disabled.
 void Robot::DisabledInit() {
 	std::cout << "DisabledInit" << std::endl;
+	CommandBase::driveTrain->GyroCalibrate();
 }
 
 // When the robot is in Disabled this method is called each time a new packet is received from the driver station.
@@ -51,8 +54,7 @@ void Robot::DisabledPeriodic() {
 // Called each and every time autonomous is entered from another mode.
 void Robot::AutonomousInit() {
 	std::cout << "AutonomousInit" << std::endl;
-	_autoMove->Initialize(250);
-	_autoMove->Start();
+	_deliverGearCommandGroup->Start();
 	//autonomousCommand = (Command *) chooser->GetSelected();
 	//autonomousCommand->Start();
 }
@@ -60,16 +62,15 @@ void Robot::AutonomousInit() {
 // When the robot is in Autonomous mode this method is called each time a new packet is received from the driver station.
 void Robot::AutonomousPeriodic() {
 	Scheduler::GetInstance()->Run();
-	SmartDashboard::PutNumber("Enc Left", CommandBase::driveTrain->EncGetLeft());
 }
 
 // Called each and every time teleop is entered from another mode.
 void Robot::TeleopInit() {
 	std::cout << "TeleopInit" << std::endl;
 
-	CommandBase::oi->SetButton1PressedCommand(_shootBallCommand.get());
+	//CommandBase::oi->SetButton1PressedCommand(_shootBallCommand.get());
 
-	CommandBase::driveTrain->GyroCalibrate();
+
 
 	// This makes sure that the autonomous stops running when
 	// teleop starts running. If you want the autonomous to
@@ -78,6 +79,9 @@ void Robot::TeleopInit() {
 	//if (autonomousCommand != NULL) {
 	//	autonomousCommand->Cancel();
 	//}
+	CommandBase::oi->SetButtonPressedCommand( 1, (Command *)_shootBallCommand.get());
+	CommandBase::oi->SetButtonPressedCommand( 2, (Command *)_ballPickupToggle.get());
+
 }
 
 // When the robot is in Teleop mode this method is called each time a new packet is received from the driver station.
@@ -96,13 +100,16 @@ void Robot::TestInit()
 	//_deliverGearCommandGroup = std::make_unique<DeliverGearCommandGroup>(90.0, 2000.0);	// Turn 90 degrees and then drive forwards 2m.
 	//CommandBase::oi->SetButton2PressedCommand(_deliverGearCommandGroup.get());
 
-	AutoRotate autoRotate{};
-	autoRotate.Initialize(90);
-	CommandBase::oi->SetButton1PressedCommand((Command *)&autoRotate);
+	//AutoRotate autoRotate{};
+	//autoRotate.Initialize(90);
+	//_autoRotate->Initialize(90.0);
+	//CommandBase::oi->SetButton1PressedCommand((Command *)_autoRotate.get());
 
-	AutoMove autoMove{};
-	autoMove.Initialize(24);
-	CommandBase::oi->SetButton2PressedCommand((Command *)&autoMove);
+	//_autoMove->Initialize(74);
+	//CommandBase::oi->SetButton1PressedCommand((Command *)_autoMove.get());
+
+	//CommandBase::oi->SetButtonPressedCommand(JoystickButton1, (Command *)_shootBallCommand.get());
+
 }
 
 // When the robot is in Test mode this method is called each time a new packet is received from the driver station.
