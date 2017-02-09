@@ -25,8 +25,8 @@ const bool SHOOTER_DEFAULT_DIRECTION = 1; // Inverted
 const double SHOOTER_DEFAULT_SPEED = 0.95;
 
 // Ball Pickup
-const int SUCKER_TALON_PIN = 5;
-const bool SUCKER_DEFAULT_DIRECTION = 1; // Inverted
+const int PICKUP_TALON = 5;
+const bool PICKUP_DEFAULT_DIRECTION = 1; // Inverted
 
 // Driver Mapping
 constexpr int DRIVER_JOY_NUM = 0;
