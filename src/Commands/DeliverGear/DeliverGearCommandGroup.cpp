@@ -16,15 +16,31 @@
 
 #include <Commands/DeliverGear/DeliverGearCommandGroup.h>
 
-DeliverGearCommandGroup::DeliverGearCommandGroup() {
-	//_autoRotateCommand = new AutoRotate();
-	_autoMoveCommand = new AutoMove();
+DeliverGearCommandGroup::DeliverGearCommandGroup() {	
 	// ToDo: Add additional rotate and drive commands to get the bot in approximate position for the vision processing to take over.
+	//AddSequential(_autoMoveCommand, DRIVE_FORWARDS_COMMAND_EXPIRY_SECONDS);
+	//AddSequential(_autoRotateCommand, ROTATE_COMMAND_EXPIRY_SECONDS);
+	//AddSequential(_autoMoveCommand, DRIVE_FORWARDS_COMMAND_EXPIRY_SECONDS);
+	//AddSequential(_autoRotateCommand, ROTATE_COMMAND_EXPIRY_SECONDS);
+}
 
-	_autoMoveCommand->AddToQueue(50);
-	AddSequential(_autoMoveCommand, DRIVE_FORWARDS_COMMAND_EXPIRY_SECONDS);
-	//AddSequential(_autoRotateCommand, ROTATE_COMMAND_EXPIRY_SECONDS);
-	_autoMoveCommand->AddToQueue(50);
-	AddSequential(_autoMoveCommand, DRIVE_FORWARDS_COMMAND_EXPIRY_SECONDS);
-	//AddSequential(_autoRotateCommand, ROTATE_COMMAND_EXPIRY_SECONDS);
+void DeliverGearCommandGroup::Initialize(std::vector<std::pair<AutoCommand_t, double>> v) {
+	std::cout << "DG CG Init" << std::endl;
+	for (auto iter = v.begin(); iter != v.end(); iter++) {
+		auto item = (*iter);
+		switch(item.first) {
+			case AutoCommand_t::AutoMove:
+			std::cout << "AutoMove" << item.second << std::endl;
+			auto autoMoveCommand = new AutoMove();
+			autoMoveCommand->Initialize(item.second);
+			AddSequential(autoMoveCommand, DRIVE_FORWARDS_COMMAND_EXPIRY_SECONDS);
+			break;
+			case AutoCommand_t::AutoRotate:
+			std::cout << "AutoRotate" << item.second << std::endl;
+			auto autoRotateCommand = new AutoRotate();
+			autoRotateCommand->Initialize(item.second);
+			AddSequential(autoRotateCommand, ROTATE_COMMAND_EXPIRY_SECONDS);
+			break;
+		}
+	}
 }

@@ -54,6 +54,14 @@ void Robot::DisabledPeriodic() {
 // Called each and every time autonomous is entered from another mode.
 void Robot::AutonomousInit() {
 	std::cout << "AutonomousInit" << std::endl;
+
+	std::vector<std::pair<AutoCommand_t, double>> commandVec;
+
+	commandVec.push_back({AutoCommand_t::AutoMove, 73});
+	commandVec.push_back({AutoCommand_t::AutoRotate, 60});
+
+	_deliverGearCommandGroup->Initialize(commandVec);
+
 	_deliverGearCommandGroup->Start();
 	//autonomousCommand = (Command *) chooser->GetSelected();
 	//autonomousCommand->Start();

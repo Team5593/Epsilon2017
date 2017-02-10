@@ -18,6 +18,9 @@
 #ifndef DeliverGearCommandGroup_H
 #define DeliverGearCommandGroup_H
 
+#include <RobotMap.h>
+#include <vector>
+#include <utility>
 #include <Commands/CommandGroup.h>
 #include "Commands/AutoRotate.h"
 #include "Commands/AutoMove.h"
@@ -28,9 +31,8 @@
 class DeliverGearCommandGroup : public CommandGroup {
 public:
 	DeliverGearCommandGroup();
+	void Initialize(std::vector<std::pair<AutoCommand_t, double>> v);
 private:
-	//AutoRotate * _autoRotateCommand { nullptr };
-	AutoMove * _autoMoveCommand { nullptr};
 };
 
 #endif  // DeliverGearCommandGroup_H

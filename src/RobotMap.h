@@ -1,6 +1,13 @@
 #ifndef ROBOTMAP_H
 #define ROBOTMAP_H
 
+
+// Command Enumerator
+enum AutoCommand_t {
+	AutoMove,
+	AutoRotate
+};
+
 // Drive Train
 constexpr int DRIVETRAIN_LEFT_MOTOR = 0;
 constexpr int DRIVETRAIN_RIGHT_MOTOR = 1;

@@ -12,6 +12,7 @@ DriveTrain::DriveTrain(int leftMotorChannel, int rightMotorChannel, int encLeftC
 	_encLeft.SetReverseDirection(true);
 	_encRight.SetDistancePerPulse(_distancePerPulse);
 	_robotDrive.SetExpiration(0.1);
+	_robotDrive.SetSafetyEnabled(false);
 }
 
 void DriveTrain::InitDefaultCommand() {

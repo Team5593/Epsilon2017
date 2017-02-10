@@ -3,23 +3,18 @@
 AutoMove::AutoMove() {
 }
 
-void AutoMove::AddToQueue(double relativeDistance) {
-	distanceArray.push_back(relativeDistance/(4 * 3.14159) * 250);
-}
-
 // Called just before this Command runs the first time
-void AutoMove::Initialize() {
+void AutoMove::Initialize(double distance) {
+	_relativeDistance = distance;
 	driveTrain->EncResetAll();
 	driveTrain->GyroReset();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void AutoMove::Execute() {
-	double distance = distanceArray.at(arrayPos);
-	
-	_leftFinished=fabs(driveTrain->EncGetLeft()) >= fabs(distance);
-	_rightFinished=fabs(driveTrain->EncGetRight()) >= fabs(distance);
-	double proportion = (driveTrain->GetGyroAngle()) / 180;
+	_leftFinished=fabs(driveTrain->EncGetLeft()) >= fabs(_relativeDistance);
+	_rightFinished=fabs(driveTrain->EncGetRight()) >= fabs(_relativeDistance);
+	double proportion = (driveTrain->GetGyroAngle()) / 90;
 	int inverted = fabs(_relativeDistance) / _relativeDistance;
 
 	driveTrain->TankDrive(_speed*!_leftFinished*inverted-proportion, _speed*!_rightFinished*inverted+proportion);

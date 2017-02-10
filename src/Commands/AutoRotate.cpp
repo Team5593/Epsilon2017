@@ -1,16 +1,13 @@
 #include "AutoRotate.h"
 
-AutoRotate::AutoRotate(double relativeAngle): _relativeAngle(relativeAngle) {
-
-}
-
 AutoRotate::AutoRotate() {
 	
 }
 
 // Called just before this Command runs the first time
-void AutoRotate::Initialize() {
+void AutoRotate::Initialize(double angle) {
 	std::cout << "AutoRotate::Initialize" << std::endl;
+	_relativeAngle = angle;
 	driveTrain->GyroReset();
 }
 
@@ -24,7 +21,7 @@ void AutoRotate::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool AutoRotate::IsFinished() {
-	return driveTrain->GetGyroAngle() <= _relativeAngle+2 && driveTrain->GetGyroAngle() >= _relativeAngle-2;
+	return driveTrain->GetGyroAngle() <= _relativeAngle + 2 && driveTrain->GetGyroAngle() >= _relativeAngle - 2;
 } //Robot within 2 degrees of desired angle
 
 // Called once after isFinished returns true

@@ -6,9 +6,8 @@
 
 class AutoRotate : public CommandBase {
 public:
-	AutoRotate(double relativeAngle);
 	AutoRotate();
-	void Initialize();
+	void Initialize(double angle);
 	void Execute();
 	bool IsFinished();
 	void End();
