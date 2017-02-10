@@ -3,8 +3,8 @@
 
 // Command Enumerator
 enum class AutoCommand_t {
-	AutoMoveEnum,
-	AutoRotateEnum
+	AutoMoveCommand,
+	AutoRotateCommand
 };
 
 // Drive Train

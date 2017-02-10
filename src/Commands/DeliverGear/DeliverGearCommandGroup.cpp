@@ -25,7 +25,7 @@ void DeliverGearCommandGroup::Initialize(std::vector<std::pair<AutoCommand_t, do
 	for (auto iter = v.begin(); iter != v.end(); iter++) {
 		auto item = (*iter);
 		switch(item.first) {
-			case AutoCommand_t::AutoMoveEnum:
+			case AutoCommand_t::AutoMoveCommand:
 			{
 				std::cout << "AutoMove" << item.second << std::endl;
 				auto autoMoveCommand = new AutoMove();
@@ -33,7 +33,7 @@ void DeliverGearCommandGroup::Initialize(std::vector<std::pair<AutoCommand_t, do
 				AddSequential(autoMoveCommand, DRIVE_FORWARDS_COMMAND_EXPIRY_SECONDS);
 				break;
 			}
-			case AutoCommand_t::AutoRotateEnum:
+			case AutoCommand_t::AutoRotateCommand:
 			{
 				std::cout << "AutoRotate" << item.second << std::endl;
 				auto autoRotateCommand = new AutoRotate();
