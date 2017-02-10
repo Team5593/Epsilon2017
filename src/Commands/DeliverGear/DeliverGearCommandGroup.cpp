@@ -16,12 +16,8 @@
 
 #include <Commands/DeliverGear/DeliverGearCommandGroup.h>
 
-DeliverGearCommandGroup::DeliverGearCommandGroup() {	
-	// ToDo: Add additional rotate and drive commands to get the bot in approximate position for the vision processing to take over.
-	//AddSequential(_autoMoveCommand, DRIVE_FORWARDS_COMMAND_EXPIRY_SECONDS);
-	//AddSequential(_autoRotateCommand, ROTATE_COMMAND_EXPIRY_SECONDS);
-	//AddSequential(_autoMoveCommand, DRIVE_FORWARDS_COMMAND_EXPIRY_SECONDS);
-	//AddSequential(_autoRotateCommand, ROTATE_COMMAND_EXPIRY_SECONDS);
+DeliverGearCommandGroup::DeliverGearCommandGroup() {
+	
 }
 
 void DeliverGearCommandGroup::Initialize(std::vector<std::pair<AutoCommand_t, double>> v) {
