@@ -6,13 +6,16 @@
 
 class AutoMove : public CommandBase {
 public:
-	AutoMove(double relativeDistance, double speed);
+	AutoMove();
+	void AddToQueue(double relativeDistance);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
 private:
+	std::vector<double> distanceArray;
+	int arrayPos = 0;
 	double _relativeDistance;
 	double _speed = 0.5;
 	bool _leftFinished = false;
