@@ -57,8 +57,10 @@ void Robot::AutonomousInit() {
 
 	std::vector<std::pair<AutoCommand_t, double>> commandVec;
 
-	commandVec.push_back({AutoCommand_t::AutoMoveCommand, 73});
-	commandVec.push_back({AutoCommand_t::AutoRotateCommand, 60});
+	commandVec.push_back({AutoCommand_t::AutoMoveCommand, 73}); 	// Move away from wall
+	commandVec.push_back({AutoCommand_t::AutoRotateCommand, -30}); 	// Turn parallel to the peg wall
+	commandVec.push_back({AutoCommand_t::AutoMoveCommand, 20});		// Move inline with peg
+	commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90}); 	// Turn facing the peg
 
 	_deliverGearCommandGroup->Initialize(commandVec);
 
