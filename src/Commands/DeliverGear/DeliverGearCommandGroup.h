@@ -29,7 +29,7 @@ class DeliverGearCommandGroup : public CommandGroup {
 public:
 	DeliverGearCommandGroup();
 private:
-	AutoRotate * _autoRotateCommand { nullptr };
+	//AutoRotate * _autoRotateCommand { nullptr };
 	AutoMove * _autoMoveCommand { nullptr};
 };
 
