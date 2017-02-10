@@ -1,11 +1,10 @@
 #ifndef ROBOTMAP_H
 #define ROBOTMAP_H
 
-
 // Command Enumerator
-enum AutoCommand_t {
-	AutoMove,
-	AutoRotate
+enum class AutoCommand_t {
+	AutoMoveEnum,
+	AutoRotateEnum
 };
 
 // Drive Train

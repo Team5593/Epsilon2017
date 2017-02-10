@@ -57,8 +57,8 @@ void Robot::AutonomousInit() {
 
 	std::vector<std::pair<AutoCommand_t, double>> commandVec;
 
-	commandVec.push_back({AutoCommand_t::AutoMove, 73});
-	commandVec.push_back({AutoCommand_t::AutoRotate, 60});
+	commandVec.push_back({AutoCommand_t::AutoMoveEnum, 73});
+	commandVec.push_back({AutoCommand_t::AutoRotateEnum, 60});
 
 	_deliverGearCommandGroup->Initialize(commandVec);
 

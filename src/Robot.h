@@ -25,6 +25,7 @@
 #include "Commands/AutoMove.h"
 #include "Commands/DeliverGear/DeliverGearCommandGroup.h"
 #include "Commands/BallPickupToggle.h"
+#include <memory>
 
 class Robot: public IterativeRobot {
 public:
