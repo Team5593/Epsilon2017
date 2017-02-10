@@ -4,6 +4,10 @@ AutoRotate::AutoRotate(double relativeAngle): _relativeAngle(relativeAngle) {
 
 }
 
+AutoRotate::AutoRotate() {
+	
+}
+
 // Called just before this Command runs the first time
 void AutoRotate::Initialize() {
 	std::cout << "AutoRotate::Initialize" << std::endl;
