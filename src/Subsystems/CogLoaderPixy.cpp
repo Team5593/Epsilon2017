@@ -14,12 +14,12 @@ void CogLoaderPixy::InitDefaultCommand() {
 
 int CogLoaderPixy::GetX() {
 	_pixy.GetBlocks(2);
-	return abs(_pixy.blocks[0].x - _pixy.blocks[1].x);
+	return abs((_pixy.blocks[0].x + _pixy.blocks[1].x) / 2);
 }
 
 int CogLoaderPixy::GetY() {
 	_pixy.GetBlocks(2);
-	return abs(_pixy.blocks[0].y - _pixy.blocks[1].y);
+	return abs((_pixy.blocks[0].y - _pixy.blocks[1].y) / 2);
 }
 
 int CogLoaderPixy::GetWidth() { // Note: this is an average of the width of a both block, not the height of the entire vision helper
