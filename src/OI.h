@@ -11,6 +11,7 @@ public:
 	double GetHeadingAxis();
 	bool GetShiftButton();
 	void SetButtonPressedCommand(int buttonNum, Command * command);
+	void SetButtonHeldCommand(int buttonNum, Command * command);
 
 	Joystick _driverJoy;
 private:

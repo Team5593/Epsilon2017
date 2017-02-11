@@ -25,19 +25,20 @@ ShootBallCommand::ShootBallCommand() {
 // Called just before this Command runs the first time
 void ShootBallCommand::Initialize() {
 	std::cout << "ShootBallCommand::Initialize." << std::endl;
+	_isOn = !_isOn;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ShootBallCommand::Execute() {
-	std::cout << "ShootBallCommand::Execute." << std::endl;
-	CommandBase::Shooter->Set(-0.95);
+	//std::cout << "ShootBallCommand::Execute." << std::endl;
+	CommandBase::Shooter->SetShooter(-0.95*_isOn);
+	CommandBase::Shooter->SetFeeder(1.0*_isOn);
+	CommandBase::oi->_driverJoy.SetRumble(oi->_driverJoy.kLeftRumble, _isOn * 0.5);
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool ShootBallCommand::IsFinished() {
-	// ToDo: There needs to be some timing factor that sets is finished to true after enough
-	// time has passed for the shot to have been completed.
-	return true;
+	return false;
 }
 
 // Called once after isFinished returns true

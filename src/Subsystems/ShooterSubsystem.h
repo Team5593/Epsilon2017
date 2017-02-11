@@ -21,15 +21,15 @@
 #include "WPILib.h"
 
 class ShooterSubsystem : public Subsystem {
-
 private:
 	Talon _shooterTalon;
+	Talon _feederTalon;
 
 public:
-	ShooterSubsystem(int talonShooterPin);
+	ShooterSubsystem(int shooterChannel, int feederChannel);
 	void InitDefaultCommand();
-	void ActivateShooter(int milliseconds);
-	void Set(double speed);
+	void SetShooter(double speed);
+	void SetFeeder(double speed);
 };
 
 #endif  // ShooterSubsystem_H

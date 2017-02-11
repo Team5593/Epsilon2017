@@ -44,6 +44,8 @@ void Robot::RobotPeriodic() {
 // the robot is disabled.
 void Robot::DisabledInit() {
 	std::cout << "DisabledInit" << std::endl;
+	CommandBase::oi->_driverJoy.SetRumble(CommandBase::oi->_driverJoy.kLeftRumble, 0.0);
+	CommandBase::oi->_driverJoy.SetRumble(CommandBase::oi->_driverJoy.kRightRumble, 0.0);
 }
 
 // When the robot is in Disabled this method is called each time a new packet is received from the driver station.
@@ -93,8 +95,8 @@ void Robot::TeleopInit() {
 	//if (autonomousCommand != NULL) {
 	//	autonomousCommand->Cancel();
 	//}
-	CommandBase::oi->SetButtonPressedCommand( 1, (Command *)_shootBallCommand.get());
-	CommandBase::oi->SetButtonPressedCommand( 2, (Command *)_ballPickupToggle.get());
+	CommandBase::oi->SetButtonHeldCommand( 1, (Command *)_shootBallCommand.get());
+	CommandBase::oi->SetButtonHeldCommand( 2, (Command *)_ballPickupToggle.get());
 
 }
 

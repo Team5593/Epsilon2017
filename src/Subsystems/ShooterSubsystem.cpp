@@ -16,8 +16,9 @@
 
 #include "ShooterSubsystem.h"
 
-ShooterSubsystem::ShooterSubsystem(int talonShooterPin) : Subsystem("ExampleSubsystem"),
-	_shooterTalon{talonShooterPin}
+ShooterSubsystem::ShooterSubsystem(int shooterChannel, int feederChannel) : Subsystem("ExampleSubsystem"),
+	_shooterTalon{shooterChannel},
+	_feederTalon{feederChannel}
 {
 
 }
@@ -27,15 +28,12 @@ void ShooterSubsystem::InitDefaultCommand() {
 	// SetDefaultCommand(new MySpecialCommand());
 }
 
-// This method activates the shooter's talon motor controller for a set
-// number of milliseconds. The idea is that it can be pre-determined how many
-// milliseconds the motor needs to be activated to fire a single ball and thereby
-// set the parameter based on the number of balls to shoot.
-void ShooterSubsystem::ActivateShooter(int milliseconds) {
-	// ToDo
-}
-
-
-void ShooterSubsystem::Set(double speed) {
+void ShooterSubsystem::SetShooter(double speed) {
 	_shooterTalon.Set(speed);
 }
+
+void ShooterSubsystem::SetFeeder(double speed) {
+	_feederTalon.Set(speed);
+}
+
+

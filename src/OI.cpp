@@ -22,3 +22,8 @@ void OI::SetButtonPressedCommand(int buttonNum, Command * command) {
 	JoystickButton* button = new JoystickButton(&_driverJoy, buttonNum);
 	button->WhenPressed(command);
 }
+
+void OI::SetButtonHeldCommand(int buttonNum, Command * command) {
+	JoystickButton* button = new JoystickButton(&_driverJoy, buttonNum);
+	button->WhileHeld(command);
+}
