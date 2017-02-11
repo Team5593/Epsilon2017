@@ -32,28 +32,26 @@ void Robot::RobotInit() {
 	_deliverGearCommandGroup = std::make_unique<DeliverGearCommandGroup>();
 }
 
-// This function is called each time a new packet is received from the driver station
-// INCLUDING when the robot is disabled.
+
+// Runs all of the time (including during disabled methods)
 void Robot::RobotPeriodic() {
 	//std::cout << "RobotPeriodic" << std::endl;
 	SmartDashboard::PutNumber("Gyro Angle", CommandBase::driveTrain->GetGyroAngle());
 }
 
-// This function is called once each time the robot enters Disabled mode.
-// You can use it to reset any subsystem information you want to clear when
-// the robot is disabled.
+// Run once when robot enters disabled mode
 void Robot::DisabledInit() {
 	std::cout << "DisabledInit" << std::endl;
 	CommandBase::oi->_driverJoy.SetRumble(CommandBase::oi->_driverJoy.kLeftRumble, 0.0);
 	CommandBase::oi->_driverJoy.SetRumble(CommandBase::oi->_driverJoy.kRightRumble, 0.0);
 }
 
-// When the robot is in Disabled this method is called each time a new packet is received from the driver station.
+// Runs when robot is disabled
 void Robot::DisabledPeriodic() {
 	Scheduler::GetInstance()->Run();
 }
 
-// Called each and every time autonomous is entered from another mode.
+// Run once when robot enters autonomous mode
 void Robot::AutonomousInit() {
 	CommandBase::driveTrain->GyroCalibrate();
 	CommandBase::driveTrain->EncResetAll();
@@ -71,27 +69,19 @@ void Robot::AutonomousInit() {
 	_deliverGearCommandGroup->Initialize(commandVec);
 
 	_deliverGearCommandGroup->Start();
-	//autonomousCommand = (Command *) chooser->GetSelected();
-	//autonomousCommand->Start();
 }
 
-// When the robot is in Autonomous mode this method is called each time a new packet is received from the driver station.
+// Runs when robot is in autonomous mode
 void Robot::AutonomousPeriodic() {
 	Scheduler::GetInstance()->Run();
 }
 
-// Called each and every time teleop is entered from another mode.
+// Run once when robot enters teleop mode
 void Robot::TeleopInit() {
 	std::cout << "TeleopInit" << std::endl;
 
-	//CommandBase::oi->SetButton1PressedCommand(_shootBallCommand.get());
 
-
-
-	// This makes sure that the autonomous stops running when
-	// teleop starts running. If you want the autonomous to
-	// continue until interrupted by another command, remove
-	// this line or comment it out.
+	// Stop autonomous commands
 	//if (autonomousCommand != NULL) {
 	//	autonomousCommand->Cancel();
 	//}
@@ -100,34 +90,20 @@ void Robot::TeleopInit() {
 
 }
 
-// When the robot is in Teleop mode this method is called each time a new packet is received from the driver station.
+// Runs when robot is in teleop mode
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
+	LiveWindow::GetInstance()->Run();
 }
 
-// Called each and every time test is entered from another mode.
+// Run once when robot enters test mode
 void Robot::TestInit()
 {
 	std::cout << "TestInit" << std::endl;
-	// Scheduler doesn't get enabled by default in Test mode so if you want to test commands enable it.
-	Scheduler::GetInstance()->SetEnabled(true);
-
-	//_deliverGearCommandGroup = std::make_unique<DeliverGearCommandGroup>(90.0, 2000.0);	// Turn 90 degrees and then drive forwards 2m.
-	//CommandBase::oi->SetButton2PressedCommand(_deliverGearCommandGroup.get());
-
-	//AutoRotate autoRotate{};
-	//autoRotate.Initialize(90);
-	//_autoRotate->Initialize(90.0);
-	//CommandBase::oi->SetButton1PressedCommand((Command *)_autoRotate.get());
-
-	//_autoMove->Initialize(74);
-	//CommandBase::oi->SetButton1PressedCommand((Command *)_autoMove.get());
-
-	//CommandBase::oi->SetButtonPressedCommand(JoystickButton1, (Command *)_shootBallCommand.get());
 
 }
 
-// When the robot is in Test mode this method is called each time a new packet is received from the driver station.
+// Runs when robot is in test mode
 void Robot::TestPeriodic() {
 	// Scheduler doesn't get enabled by default in Test mode so if you want to test commands enable it.
 	Scheduler::GetInstance()->Run();
