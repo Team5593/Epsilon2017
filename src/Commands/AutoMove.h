@@ -13,10 +13,11 @@ public:
 	void End();
 	void Interrupted();
 private:
-	double _relativeDistance = 0.0;
+	double _relativeDistance;
 	double _speed = 0.5;
 	bool _leftFinished = false;
 	bool _rightFinished = false;
+	bool _firstExecute = true;
 };
 
 #endif  // AutoMove_H

@@ -36,6 +36,7 @@ void Robot::RobotInit() {
 // INCLUDING when the robot is disabled.
 void Robot::RobotPeriodic() {
 	//std::cout << "RobotPeriodic" << std::endl;
+	SmartDashboard::PutNumber("Gyro Angle", CommandBase::driveTrain->GetGyroAngle());
 }
 
 // This function is called once each time the robot enters Disabled mode.
@@ -53,12 +54,16 @@ void Robot::DisabledPeriodic() {
 
 // Called each and every time autonomous is entered from another mode.
 void Robot::AutonomousInit() {
+	CommandBase::driveTrain->EncResetAll();
+	CommandBase::driveTrain->GyroReset();
 	std::cout << "AutonomousInit" << std::endl;
 
 	std::vector<std::pair<AutoCommand_t, double>> commandVec;
 
 	commandVec.push_back({AutoCommand_t::AutoMoveCommand, 73});
-	commandVec.push_back({AutoCommand_t::AutoRotateCommand, 60});
+	commandVec.push_back({AutoCommand_t::AutoRotateCommand, -30});
+	commandVec.push_back({AutoCommand_t::AutoMoveCommand, 25});
+	commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
 
 	_deliverGearCommandGroup->Initialize(commandVec);
 
@@ -95,7 +100,6 @@ void Robot::TeleopInit() {
 // When the robot is in Teleop mode this method is called each time a new packet is received from the driver station.
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
-	SmartDashboard::PutNumber("Gyro Angle", CommandBase::driveTrain->GetGyroAngle());
 }
 
 // Called each and every time test is entered from another mode.

@@ -14,6 +14,7 @@ public:
 	void Interrupted();
 private:
 	double _relativeAngle = 0;
+	bool _firstExecute = true;
 };
 
 #endif  // AutoRotate_H

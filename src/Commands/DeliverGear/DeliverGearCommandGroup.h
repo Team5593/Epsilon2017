@@ -25,8 +25,8 @@
 #include "Commands/AutoRotate.h"
 #include "Commands/AutoMove.h"
 
-#define ROTATE_COMMAND_EXPIRY_SECONDS 5.0		// If the auto rotate takes longer than this assume something has gone wrong and terminate the command.
-#define DRIVE_FORWARDS_COMMAND_EXPIRY_SECONDS 5.0		// If the drive set distance takes longer thanthis assume something has gone wrong and terminate the command.
+#define ROTATE_COMMAND_EXPIRY_SECONDS 15.0		// If the auto rotate takes longer than this assume something has gone wrong and terminate the command.
+#define DRIVE_FORWARDS_COMMAND_EXPIRY_SECONDS 15.0		// If the drive set distance takes longer thanthis assume something has gone wrong and terminate the command.
 
 class DeliverGearCommandGroup : public CommandGroup {
 public:

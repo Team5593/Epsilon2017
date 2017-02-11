@@ -1,17 +1,24 @@
 #include "AutoMove.h"
 
 AutoMove::AutoMove() {
+	Requires(CommandBase::driveTrain.get());
 }
 
 // Called just before this Command runs the first time
 void AutoMove::Initialize(double distance) {
-	_relativeDistance = distance;
-	driveTrain->EncResetAll();
-	driveTrain->GyroReset();
+	_relativeDistance += ((distance/(4 * 3.14159)) * 250);
+	//driveTrain->EncResetAll();
+	//driveTrain->GyroReset();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void AutoMove::Execute() {
+	if (_firstExecute) {
+		driveTrain->EncResetAll();
+		driveTrain->GyroReset();
+		_firstExecute = false;
+	}
+	
 	_leftFinished=fabs(driveTrain->EncGetLeft()) >= fabs(_relativeDistance);
 	_rightFinished=fabs(driveTrain->EncGetRight()) >= fabs(_relativeDistance);
 	double proportion = (driveTrain->GetGyroAngle()) / 90;

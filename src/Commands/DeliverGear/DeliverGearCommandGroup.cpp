@@ -17,7 +17,7 @@
 #include <Commands/DeliverGear/DeliverGearCommandGroup.h>
 
 DeliverGearCommandGroup::DeliverGearCommandGroup() {
-	
+	//driveTrain->GyroReset();
 }
 
 void DeliverGearCommandGroup::Initialize(std::vector<std::pair<AutoCommand_t, double>> v) {

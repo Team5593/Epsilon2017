@@ -1,19 +1,21 @@
 #include "AutoRotate.h"
 
 AutoRotate::AutoRotate() {
-	
 }
 
 // Called just before this Command runs the first time
 void AutoRotate::Initialize(double angle) {
 	std::cout << "AutoRotate::Initialize" << std::endl;
-	_relativeAngle = angle;
-	driveTrain->GyroReset();
+	_relativeAngle = driveTrain->GetGyroAngle() + angle;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void AutoRotate::Execute() {
-	std::cout << "AutoRotate::Execute" << std::endl;
+	//if (_firstExecute) {
+	//	driveTrain->GyroReset();
+	//	_firstExecute = false;
+	//}
+	//std::cout << "AutoRotate::Execute" << std::endl;
 	if (driveTrain->GetGyroAngle()<_relativeAngle) {
 		driveTrain->TankDrive(0.5, -0.5);
 	} else driveTrain->TankDrive(-0.5, 0.5);
