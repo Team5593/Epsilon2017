@@ -44,7 +44,6 @@ void Robot::RobotPeriodic() {
 // the robot is disabled.
 void Robot::DisabledInit() {
 	std::cout << "DisabledInit" << std::endl;
-	CommandBase::driveTrain->GyroCalibrate();
 }
 
 // When the robot is in Disabled this method is called each time a new packet is received from the driver station.
@@ -54,6 +53,7 @@ void Robot::DisabledPeriodic() {
 
 // Called each and every time autonomous is entered from another mode.
 void Robot::AutonomousInit() {
+	CommandBase::driveTrain->GyroCalibrate();
 	CommandBase::driveTrain->EncResetAll();
 	CommandBase::driveTrain->GyroReset();
 	std::cout << "AutonomousInit" << std::endl;
