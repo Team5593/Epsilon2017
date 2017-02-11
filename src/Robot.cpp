@@ -62,8 +62,9 @@ void Robot::AutonomousInit() {
 
 	commandVec.push_back({AutoCommand_t::AutoMoveCommand, 73});
 	commandVec.push_back({AutoCommand_t::AutoRotateCommand, -30});
-	commandVec.push_back({AutoCommand_t::AutoMoveCommand, 25});
+	commandVec.push_back({AutoCommand_t::AutoMoveCommand, 35});
 	commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
+	commandVec.push_back({AutoCommand_t::AutoMoveCommand, 40});
 
 	_deliverGearCommandGroup->Initialize(commandVec);
 

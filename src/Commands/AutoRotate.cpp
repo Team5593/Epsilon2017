@@ -16,9 +16,10 @@ void AutoRotate::Execute() {
 	//	_firstExecute = false;
 	//}
 	//std::cout << "AutoRotate::Execute" << std::endl;
+
 	if (driveTrain->GetGyroAngle()<_relativeAngle) {
-		driveTrain->TankDrive(0.5, -0.5);
-	} else driveTrain->TankDrive(-0.5, 0.5);
+		driveTrain->TankDrive(_speed, -_speed);
+	} else driveTrain->TankDrive(-_speed, _speed);
 }
 
 // Make this return true when this Command no longer needs to run execute()
