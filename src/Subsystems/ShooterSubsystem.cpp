@@ -29,7 +29,7 @@ void ShooterSubsystem::InitDefaultCommand() {
 }
 
 void ShooterSubsystem::SetShooter(double speed) {
-	_shooterTalon.Set(speed);
+	_shooterTalon.Set(-speed);
 }
 
 void ShooterSubsystem::SetFeeder(double speed) {
