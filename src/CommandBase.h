@@ -7,6 +7,7 @@
 #include "Subsystems/DriveTrain.h"
 #include "Subsystems/ShooterSubsystem.h"
 #include "Subsystems/BallPickup.h"
+#include "Subsystems/CogPixy.h"
 #include "OI.h"
 
 /**
@@ -25,6 +26,7 @@ public:
 	static std::unique_ptr<DriveTrain> driveTrain;
 	static std::unique_ptr<ShooterSubsystem> Shooter;
 	static std::unique_ptr<BallPickup> ballPickup;
+	static std::unique_ptr<CogPixy> cogPixy;
 	static std::unique_ptr<OI> oi;
 };
 

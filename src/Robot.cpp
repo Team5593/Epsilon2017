@@ -36,7 +36,6 @@ void Robot::RobotInit() {
 // Runs all of the time (including during disabled methods)
 void Robot::RobotPeriodic() {
 	//std::cout << "RobotPeriodic" << std::endl;
-	SmartDashboard::PutNumber("Gyro Angle", CommandBase::driveTrain->GetGyroAngle());
 }
 
 // Run once when robot enters disabled mode
@@ -94,13 +93,15 @@ void Robot::TeleopInit() {
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
 	LiveWindow::GetInstance()->Run();
+	SmartDashboard::PutNumber("Gyro Angle", CommandBase::driveTrain->GetGyroAngle());
+	//SmartDashboard::PutNumber("Shooter RPM", CommandBase::Shooter->GetEncoder());
+	SmartDashboard::PutNumber("Cog Pixy X", CommandBase::cogPixy->GetX());
 }
 
 // Run once when robot enters test mode
 void Robot::TestInit()
 {
 	std::cout << "TestInit" << std::endl;
-
 }
 
 // Runs when robot is in test mode

@@ -1,21 +1,19 @@
-#ifndef CogLoaderPixy_H
-#define CogLoaderPixy_H
+#ifndef CogPixy_H
+#define CogPixy_H
 
 #include <Commands/Subsystem.h>
 #include <Pixy/PixyI2C.h>
+#include <I2C.h>
 
-class CogLoaderPixy : public frc::Subsystem {
+class CogPixy : public Subsystem {
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 	PixyI2C _pixy;
 public:
-	CogLoaderPixy();
+	CogPixy();
 	void InitDefaultCommand();
 	int GetX();
-	int GetY();
-	int GetWidth();
-	int GetHeight();
 };
 
-#endif  // CogLoaderPixy_H
+#endif  // CogPixy_H

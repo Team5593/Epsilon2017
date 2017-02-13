@@ -26,7 +26,6 @@
 #define _PIXYI2C_H
 
 #include "TPixy.h"
-#include "I2C.h"
 
 #define PIXY_I2C_DEFAULT_ADDR           0x54
 #define PIXY_I2C_DEFAULT_PORT			frc::I2C::Port::kOnboard
@@ -34,7 +33,7 @@
 class LinkI2C
 {
 public:
-  LinkI2C(int address): Wire(frc::I2C::Port::kOnboard, address)
+  LinkI2C(): Wire(frc::I2C::Port::kOnboard, 0x54)
   {
 
   }
