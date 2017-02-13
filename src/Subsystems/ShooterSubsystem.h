@@ -24,12 +24,14 @@ class ShooterSubsystem : public Subsystem {
 private:
 	Talon _shooterTalon;
 	Talon _feederTalon;
+	I2C _shooterEncoder;
 
 public:
 	ShooterSubsystem(int shooterChannel, int feederChannel);
 	void InitDefaultCommand();
 	void SetShooter(double speed);
 	void SetFeeder(double speed);
+	int GetEncoder();
 };
 
 #endif  // ShooterSubsystem_H

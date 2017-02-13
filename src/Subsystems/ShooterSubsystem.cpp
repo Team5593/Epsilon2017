@@ -18,7 +18,8 @@
 
 ShooterSubsystem::ShooterSubsystem(int shooterChannel, int feederChannel) : Subsystem("ExampleSubsystem"),
 	_shooterTalon{shooterChannel},
-	_feederTalon{feederChannel}
+	_feederTalon{feederChannel},
+	_shooterEncoder{I2C::kOnboard, 0x08}
 {
 
 }
@@ -34,6 +35,13 @@ void ShooterSubsystem::SetShooter(double speed) {
 
 void ShooterSubsystem::SetFeeder(double speed) {
 	_feederTalon.Set(speed);
+}
+
+int ShooterSubsystem::GetEncoder() {
+	uint8_t val[1];
+	_shooterEncoder.ReadOnly( 1, val);
+	//std::cout << "Encoder Shooter: " << int(val[0]) << std::endl;
+	return val[0] * 240;
 }
 
 
