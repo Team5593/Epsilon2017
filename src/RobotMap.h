@@ -1,11 +1,17 @@
 #ifndef ROBOTMAP_H
 #define ROBOTMAP_H
 
+#include "WPILib.h"
+
 // Command Enumerator
 enum class AutoCommand_t {
 	AutoMoveCommand,
 	AutoRotateCommand
 };
+
+// Pixy
+constexpr frc::I2C::Port PIXY_PORT = frc::I2C::Port::kOnboard;
+constexpr uint8_t PIXY_ADDR = 0x54;
 
 // Drive Train
 constexpr int DRIVETRAIN_LEFT_MOTOR = 0;
