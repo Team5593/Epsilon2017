@@ -7,8 +7,8 @@ DriveTrain::DriveTrain(int leftMotorChannel, int rightMotorChannel, int encLeftC
 	_encLeft(encLeftChannelA, encLeftChannelB),
 	_encRight(encRightChannelA, encRightChannelB),
 	_gyro(analogGyroChannel),
-	_ultraFrontLeft(ultraLeftChannel),
-	_ultraFrontRight(ultraRightChannel)
+	_ultraFrontLeft(ultraLeftChannel, 1),
+	_ultraFrontRight(ultraRightChannel, 1)
 {
 	_encLeft.SetDistancePerPulse(_distancePerPulse);
 	_encLeft.SetReverseDirection(true);
