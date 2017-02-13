@@ -31,6 +31,7 @@ double DriveTrainPidSubsystem::ReturnPIDInput() {
 	// Return your input value for the PID loop
 	// e.g. a sensor, like a potentiometer:
 	// yourPot->SetAverageVoltage() / kYourMaxVoltage;
+	return 0.0;
 }
 
 void DriveTrainPidSubsystem::UsePIDOutput(double output) {
