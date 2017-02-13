@@ -14,7 +14,7 @@ public:
 	void Interrupted();
 private:
 	bool ultraLeftFinished;
-	bool ultraRightFinished
+	bool ultraRightFinished;
 };
 
 #endif  // PlaceCog_H
