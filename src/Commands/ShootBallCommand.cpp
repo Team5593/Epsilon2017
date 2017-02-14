@@ -31,7 +31,7 @@ void ShootBallCommand::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void ShootBallCommand::Execute() {
 	//std::cout << "ShootBallCommand::Execute." << std::endl;
-	CommandBase::Shooter->SetShooter(-0.95*_isOn);
+	CommandBase::Shooter->SetShooter(-0.90*_isOn);
 	CommandBase::Shooter->SetFeeder(1.0*_isOn);
 	CommandBase::oi->SetRumbleLeft(_isOn * 0.5);
 }
