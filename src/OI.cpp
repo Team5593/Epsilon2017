@@ -18,6 +18,15 @@ bool OI::GetShiftButton() {
 	return state;
 }
 
+void OI::SetRumbleLeft(double value) {
+	_driverJoy.SetRumble(_driverJoy.kLeftRumble, value);
+}
+
+void OI::SetRumbleRight(double value) {
+
+	_driverJoy.SetRumble(_driverJoy.kRightRumble, value);
+}
+
 void OI::SetButtonPressedCommand(int buttonNum, Command * command) {
 	JoystickButton* button = new JoystickButton(&_driverJoy, buttonNum);
 	button->WhenPressed(command);

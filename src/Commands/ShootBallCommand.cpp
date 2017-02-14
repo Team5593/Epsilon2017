@@ -33,7 +33,7 @@ void ShootBallCommand::Execute() {
 	//std::cout << "ShootBallCommand::Execute." << std::endl;
 	CommandBase::Shooter->SetShooter(-0.95*_isOn);
 	CommandBase::Shooter->SetFeeder(1.0*_isOn);
-	CommandBase::oi->_driverJoy.SetRumble(oi->_driverJoy.kLeftRumble, _isOn * 0.5);
+	CommandBase::oi->SetRumbleLeft(_isOn * 0.5);
 }
 
 // Make this return true when this Command no longer needs to run execute()

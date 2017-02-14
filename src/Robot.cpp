@@ -41,8 +41,8 @@ void Robot::RobotPeriodic() {
 // Run once when robot enters disabled mode
 void Robot::DisabledInit() {
 	std::cout << "DisabledInit" << std::endl;
-	CommandBase::oi->_driverJoy.SetRumble(CommandBase::oi->_driverJoy.kLeftRumble, 0.0);
-	CommandBase::oi->_driverJoy.SetRumble(CommandBase::oi->_driverJoy.kRightRumble, 0.0);
+	CommandBase::oi->SetRumbleLeft(0.0);
+	CommandBase::oi->SetRumbleRight(0.0);
 }
 
 // Runs when robot is disabled

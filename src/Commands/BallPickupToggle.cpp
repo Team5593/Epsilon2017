@@ -12,7 +12,7 @@ void BallPickupToggle::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void BallPickupToggle::Execute() {
 	ballPickup->Set(-_isOn);
-	CommandBase::oi->_driverJoy.SetRumble(oi->_driverJoy.kRightRumble, _isOn * 0.5);
+	CommandBase::oi->SetRumbleRight(_isOn * 0.5);
 }
 
 // Make this return true when this Command no longer needs to run execute()
