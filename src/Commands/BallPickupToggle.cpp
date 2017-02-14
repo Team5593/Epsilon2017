@@ -1,8 +1,6 @@
 #include "BallPickupToggle.h"
 
 BallPickupToggle::BallPickupToggle() {
-	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(Robot::chassis.get());
 	Requires(CommandBase::ballPickup.get());
 }
 
