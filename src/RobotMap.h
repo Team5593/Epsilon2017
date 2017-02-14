@@ -30,8 +30,8 @@ constexpr int DRIVER_THROTTLE_AXIS = 1;
 constexpr int DRIVER_HEADING_AXIS = 4;
 
 // Lifting
-const int LIFTING_SPARK_LEFT_PIN = 3;
-const int LIFTING_SPARK_RIGHT_PIN = 4;
+constexpr int LIFTER_SPARK_LEFT = 3;
+constexpr int LIFTER_SPARK_RIGHT = 4;
 
 // Shooter
 const int SHOOTER_TALON_PIN = 2;

@@ -86,6 +86,7 @@ void Robot::TeleopInit() {
 	//}
 	CommandBase::oi->SetButtonHeldCommand( 1, (Command *)_shootBallCommand.get());
 	CommandBase::oi->SetButtonHeldCommand( 2, (Command *)_ballPickupToggle.get());
+	CommandBase::oi->SetButtonHeldCommand( 4, (Command *)_lifterToggle.get());
 
 }
 

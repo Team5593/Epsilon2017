@@ -9,6 +9,7 @@ std::unique_ptr<DriveTrain> CommandBase::driveTrain { nullptr };
 std::unique_ptr<ShooterSubsystem> CommandBase::Shooter { nullptr };
 std::unique_ptr<BallPickup> CommandBase::ballPickup { nullptr };
 std::unique_ptr<CogPixy> CommandBase::cogPixy { nullptr };
+std::unique_ptr<Lifter> CommandBase::lifter { nullptr };
 std::unique_ptr<OI> CommandBase::oi { nullptr };
 
 CommandBase::CommandBase(const std::string &name) :
@@ -21,5 +22,6 @@ void CommandBase::init()
 	CommandBase::Shooter.reset(new ShooterSubsystem(SHOOTER_TALON_PIN, 6));
 	CommandBase::ballPickup.reset(new BallPickup(PICKUP_TALON));
 	CommandBase::cogPixy.reset(new CogPixy());
+	CommandBase::lifter.reset(new Lifter(LIFTER_SPARK_LEFT, LIFTER_SPARK_RIGHT));
 	CommandBase::oi.reset(new OI(DRIVER_JOY_NUM));
 }

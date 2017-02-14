@@ -8,6 +8,7 @@
 #include "Subsystems/ShooterSubsystem.h"
 #include "Subsystems/BallPickup.h"
 #include "Subsystems/CogPixy.h"
+#include "Subsystems/Lifter.h"
 #include "OI.h"
 
 /**
@@ -27,6 +28,7 @@ public:
 	static std::unique_ptr<ShooterSubsystem> Shooter;
 	static std::unique_ptr<BallPickup> ballPickup;
 	static std::unique_ptr<CogPixy> cogPixy;
+	static std::unique_ptr<Lifter> lifter;
 	static std::unique_ptr<OI> oi;
 };
 
