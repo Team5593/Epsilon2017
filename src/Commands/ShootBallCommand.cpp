@@ -24,7 +24,7 @@ ShootBallCommand::ShootBallCommand() {
 
 // Called just before this Command runs the first time
 void ShootBallCommand::Initialize() {
-	std::cout << "ShootBallCommand::Initialize." << std::endl;
+	//std::cout << "ShootBallCommand::Initialize." << std::endl;
 	_isOn = !_isOn;
 }
 
