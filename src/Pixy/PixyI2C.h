@@ -46,9 +46,9 @@ public:
   }
   uint8_t getByte()
   {
-    uint8_t *c;
+    uint8_t c[1];
     Wire.ReadOnly(1, c);
-    return *c;
+    return c[0];
   }
 
   int8_t send(uint8_t *data, uint8_t len)
