@@ -18,8 +18,6 @@ private:
 	frc::Encoder _encLeft;
 	frc::Encoder _encRight;
 	frc::AnalogGyro _gyro;
-	frc::Ultrasonic _ultraFrontLeft;
-	frc::Ultrasonic _ultraFrontRight;
 
 	double _distancePerPulse = 4 * 3.14159 / 250;
 

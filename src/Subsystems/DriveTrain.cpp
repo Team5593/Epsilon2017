@@ -6,17 +6,13 @@ DriveTrain::DriveTrain(int leftMotorChannel, int rightMotorChannel, int encLeftC
 	_robotDrive(leftMotorChannel, rightMotorChannel),
 	_encLeft(encLeftChannelA, encLeftChannelB),
 	_encRight(encRightChannelA, encRightChannelB),
-	_gyro(analogGyroChannel),
-	_ultraFrontLeft(ultraLeftChannel, 1),
-	_ultraFrontRight(ultraRightChannel, 1)
+	_gyro(analogGyroChannel)
 {
 	_encLeft.SetDistancePerPulse(_distancePerPulse);
 	_encLeft.SetReverseDirection(true);
 	_encRight.SetDistancePerPulse(_distancePerPulse);
 	_robotDrive.SetExpiration(0.1);
 	_robotDrive.SetSafetyEnabled(false);
-	_ultraFrontLeft.SetDistanceUnits(_ultraFrontLeft.kInches);
-	_ultraFrontRight.SetDistanceUnits(_ultraFrontRight.kInches);
 }
 
 void DriveTrain::InitDefaultCommand() {
@@ -67,9 +63,9 @@ void DriveTrain::EncResetAll(){
 }
 
 double DriveTrain::GetUltraFrontLeft() {
-	return _ultraFrontLeft.GetRangeInches();
+	return true; //_ultraFrontLeft.GetRangeInches();
 }
 
 double DriveTrain::GetUltraFrontRight() {
-	return _ultraFrontRight.GetRangeInches();
+	return true; //_ultraFrontRight.GetRangeInches();
 }
