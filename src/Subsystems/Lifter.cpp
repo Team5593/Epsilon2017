@@ -1,7 +1,7 @@
 #include <Subsystems/Lifter.h>
 #include "../RobotMap.h"
 
-Lifter::Lifter(int leftMotor, int rightMotor) : Subsystem("ExampleSubsystem"),
+Lifter::Lifter(int leftMotor, int rightMotor) : Subsystem("LifterSubsystem"),
 	_liftLeft(leftMotor),
 	_liftRight(rightMotor)
 	{

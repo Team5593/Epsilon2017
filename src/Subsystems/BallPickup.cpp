@@ -3,7 +3,7 @@
 #include "../Commands/BallPickupToggle.h"
 
 BallPickup::BallPickup(int motorChannel) :
-	frc::Subsystem("ExampleSubsystem"),
+	frc::Subsystem("BallPickupSubsystem"),
 	_pickupMotor(motorChannel)
 {
 

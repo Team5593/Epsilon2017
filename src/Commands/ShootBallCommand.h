@@ -30,7 +30,8 @@ public:
 	void End();
 	void Interrupted();
 private:
-	bool _isOn = false;
+	bool _isOn { true };
+	bool _isFinished { false };
 };
 
 #endif  // ShootBallCommand_H

@@ -21,8 +21,9 @@ ShootBallCommand::ShootBallCommand() {
 }
 
 void ShootBallCommand::Initialize() {
-	//std::cout << "ShootBallCommand::Initialize." << std::endl;
-	_isOn = !_isOn;
+	std::cout << "ShootBallCommand::Initialize." << std::endl;
+	//_isOn = !_isOn; // ToDo: I couldn't understand what this was for. If required put it back but please add a comment as to the purpose.
+	_isFinished = false;
 }
 
 void ShootBallCommand::Execute() {
@@ -33,13 +34,16 @@ void ShootBallCommand::Execute() {
 }
 
 bool ShootBallCommand::IsFinished() {
-	return false;
+	return _isFinished;
 }
 
 void ShootBallCommand::End() {
 	std::cout << "ShootBallCommand::End." << std::endl;
+	CommandBase::oi->SetRumbleLeft(0.0);
 }
 
 void ShootBallCommand::Interrupted() {
-
+	std::cout << "ShootBallCommand::Interrupted." << std::endl;
+	 _isFinished = true;
+	 CommandBase::oi->SetRumbleLeft(0.0);
 }

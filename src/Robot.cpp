@@ -30,6 +30,7 @@ void Robot::RobotInit() {
 	_autoMove = std::make_unique<AutoMove>();
 	_ballPickupToggle = std::make_unique<BallPickupToggle>();
 	_deliverGearCommandGroup = std::make_unique<DeliverGearCommandGroup>();
+	_lifterToggle = std::make_unique<Lift>();
 }
 
 
@@ -79,7 +80,6 @@ void Robot::AutonomousPeriodic() {
 void Robot::TeleopInit() {
 	std::cout << "TeleopInit" << std::endl;
 
-
 	// Stop autonomous commands
 	//if (autonomousCommand != NULL) {
 	//	autonomousCommand->Cancel();
@@ -94,9 +94,12 @@ void Robot::TeleopInit() {
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
 	LiveWindow::GetInstance()->Run();
-	SmartDashboard::PutNumber("Gyro Angle", CommandBase::driveTrain->GetGyroAngle());
+
+	// ToDo: The SmartDashboard calls below were stalling the Teleop periodic loop. Perhaps one of the calls is blocking.
+	// There's most likely a better approach to this rather than adding raw calls into the Teleop loop.
+	//SmartDashboard::PutNumber("Gyro Angle", CommandBase::driveTrain->GetGyroAngle());
 	//SmartDashboard::PutNumber("Shooter RPM", CommandBase::Shooter->GetEncoder());
-	SmartDashboard::PutNumber("Cog Pixy X", CommandBase::cogPixy->GetX());
+	//SmartDashboard::PutNumber("Cog Pixy X", CommandBase::cogPixy->GetX());
 }
 
 // Run once when robot enters test mode

@@ -1,7 +1,7 @@
 #include "CogPixy.h"
 #include "../RobotMap.h"
 
-CogPixy::CogPixy() : Subsystem("ExampleSubsystem"),
+CogPixy::CogPixy() : Subsystem("CogPixySubsystem"),
 	_pixy()
 {
 

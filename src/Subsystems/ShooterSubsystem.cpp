@@ -16,7 +16,7 @@
 
 #include "ShooterSubsystem.h"
 
-ShooterSubsystem::ShooterSubsystem(int shooterChannel, int feederChannel) : Subsystem("ExampleSubsystem"),
+ShooterSubsystem::ShooterSubsystem(int shooterChannel, int feederChannel) : Subsystem("ShooterSubsystem"),
 	_shooterTalon{shooterChannel},
 	_feederTalon{feederChannel},
 	_shooterEncoder{I2C::kOnboard, 0x08}

@@ -1,6 +1,7 @@
 #include "AutoRotate.h"
 
 AutoRotate::AutoRotate() {
+	Requires(CommandBase::driveTrain.get());
 }
 
 // Called just before this Command runs the first time

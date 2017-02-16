@@ -25,6 +25,7 @@
 #include "Commands/AutoMove.h"
 #include "Commands/DeliverGear/DeliverGearCommandGroup.h"
 #include "Commands/BallPickupToggle.h"
+#include "Commands/Lift.h"
 #include <memory>
 
 class Robot: public IterativeRobot {
@@ -52,7 +53,7 @@ private:
 	std::unique_ptr<ShootBallCommand> _shootBallCommand{ nullptr };
 	std::unique_ptr<AutoRotate> _autoRotate{ nullptr };
 	std::unique_ptr<AutoMove> _autoMove{ nullptr };
-	std::unique_ptr<Lifter> _lifterToggle{ nullptr };
+	std::unique_ptr<Lift> _lifterToggle{ nullptr };
 	std::unique_ptr<DeliverGearCommandGroup> _deliverGearCommandGroup { nullptr };
 	std::unique_ptr<BallPickupToggle> _ballPickupToggle{ nullptr };
 };

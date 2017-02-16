@@ -14,10 +14,14 @@ public:
 	void SetRumbleRight(double value);
 	void SetButtonPressedCommand(int buttonNum, Command * command);
 	void SetButtonHeldCommand(int buttonNum, Command * command);
+	void SetButtonToggleWhenPressedCommand(int buttonNum, Command * command);
 
-	Joystick _driverJoy;
 private:
-
+	Joystick _driverJoy;
+	JoystickButton _joystickButton1;
+	JoystickButton _joystickButton2;
+	JoystickButton _joystickButton3;
+	JoystickButton _joystickButton4;
 };
 
 #endif  // OI_H
