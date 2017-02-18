@@ -5,7 +5,8 @@ Lifter::Lifter(int leftMotor, int rightMotor) : Subsystem("LifterSubsystem"),
 	_liftLeft(leftMotor),
 	_liftRight(rightMotor)
 	{
-
+		_liftLeft.SetInverted(false);
+		_liftRight.SetInverted(true);
 	}
 
 void Lifter::InitDefaultCommand() {
