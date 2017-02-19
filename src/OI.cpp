@@ -16,10 +16,10 @@ double OI::GetHeadingAxis() {
 	return _driverJoy.GetRawAxis(DRIVER_HEADING_AXIS);
 }
 
-bool OI::GetShiftButton() {
-	bool state = _driverJoy.GetRawButton(DRIVER_SHIFT_BUTTON);
-	//std::cout << "Shift Button Checked: " << state << std::endl;
-	return state;
+double OI::GetSpeedAxis() {
+	double speed = _driverJoy.GetRawAxis(DRIVER_SPEED_AXIS);
+	//std::cout << "Speed Axis Checked: " << speed << std::endl;
+	return speed;
 }
 
 void OI::SetRumbleLeft(double value) {

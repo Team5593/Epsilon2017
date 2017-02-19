@@ -26,8 +26,6 @@ constexpr int DRIVETRAIN_ENC_RIGHT_B = 6;
 constexpr int DRIVETRAIN_ANALOG_GYRO = 0;
 constexpr int DRIVETRAIN_ULTRA_LEFT = 0;
 constexpr int DRIVETRAIN_ULTRA_RIGHT = 1;
-constexpr int DRIVER_THROTTLE_AXIS = 1;
-constexpr int DRIVER_HEADING_AXIS = 4;
 
 // Lifting
 constexpr int LIFTER_SPARK_LEFT = 3;
@@ -44,7 +42,9 @@ const bool PICKUP_DEFAULT_DIRECTION = 1; // Inverted
 
 // Driver Mapping
 constexpr int DRIVER_JOY_NUM = 0;
-constexpr int DRIVER_SHIFT_BUTTON = 6;
+constexpr int DRIVER_SPEED_AXIS = 3;
+constexpr int DRIVER_THROTTLE_AXIS = 1;
+constexpr int DRIVER_HEADING_AXIS = 4;
 
 // Assistant Mapping
 constexpr int ASSISTANT_JOY_NUM = 1;

@@ -11,7 +11,7 @@ void Drive::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void Drive::Execute() {
-	double speed = (oi->GetShiftButton())? DRIVETRAIN_SHIFT_SPEED : DRIVETRAIN_DEFAULT_SPEED;
+	double speed = DRIVETRAIN_DEFAULT_SPEED+(oi->GetSpeedAxis() * (DRIVETRAIN_SHIFT_SPEED - DRIVETRAIN_DEFAULT_SPEED));
 	double forwardSpeed = -oi->GetThrottleAxis()*speed;
 	double headingAngle = oi->GetHeadingAxis()*speed;
 
