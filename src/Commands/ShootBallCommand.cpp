@@ -22,13 +22,13 @@ ShootBallCommand::ShootBallCommand() {
 
 void ShootBallCommand::Initialize() {
 	std::cout << "ShootBallCommand::Initialize." << std::endl;
-	//_isOn = !_isOn; // ToDo: I couldn't understand what this was for. If required put it back but please add a comment as to the purpose.
+	_isOn = !_isOn; // Toggle the motor on or off
 	_isFinished = false;
 }
 
 void ShootBallCommand::Execute() {
 	//std::cout << "ShootBallCommand::Execute." << std::endl;
-	CommandBase::Shooter->SetShooter(-0.90*_isOn);
+	CommandBase::Shooter->SetShooter(-0.95*_isOn);
 	CommandBase::Shooter->SetFeeder(1.0*_isOn);
 	CommandBase::oi->SetRumbleLeft(_isOn * 0.5);
 }

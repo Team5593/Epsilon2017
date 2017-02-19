@@ -7,7 +7,7 @@ BallPickupToggle::BallPickupToggle() {
 // Called just before this Command runs the first time
 void BallPickupToggle::Initialize() {
 	std::cout << "BallPickupToggle::Initialize." << std::endl;
-	//_isOn = !_isOn; // ToDo: I couldn't understand what this was for. If required put it back but please add a comment as to the purpose.
+	_isOn = !_isOn; // Toggle the motor on or off
 	_isFinished = false;
 }
 
