@@ -9,7 +9,7 @@ public:
 	OI(int joystickNumber);
 	double GetThrottleAxis();
 	double GetHeadingAxis();
-	bool GetShiftButton();
+	double GetSpeedAxis();
 	void SetRumbleLeft(double value);
 	void SetRumbleRight(double value);
 	void SetButtonPressedCommand(int buttonNum, Command * command);
