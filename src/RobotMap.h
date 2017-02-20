@@ -6,7 +6,8 @@
 // Command Enumerator
 enum class AutoCommand_t {
 	AutoMoveCommand,
-	AutoRotateCommand
+	AutoRotateCommand,
+	AutoPlaceCogCommand
 };
 
 // Pixy

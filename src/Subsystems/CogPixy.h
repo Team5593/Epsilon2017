@@ -14,6 +14,7 @@ public:
 	CogPixy();
 	void InitDefaultCommand();
 	int GetX();
+	int GetWidth();
 };
 
 #endif  // CogPixy_H

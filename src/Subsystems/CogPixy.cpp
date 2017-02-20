@@ -14,7 +14,12 @@ void CogPixy::InitDefaultCommand() {
 
 int CogPixy::GetX() {
 	_pixy.GetBlocks(2);
-	return (_pixy.blocks[0].x + _pixy.blocks[1].x) / 2;
+	return (_pixy.blocks[0].x + _pixy.blocks[0].width/2) + ((_pixy.blocks[0].x + _pixy.blocks[0].width/2) - (_pixy.blocks[1].x + _pixy.blocks[1].width/2)) / 2;
+}
+
+int CogPixy::GetWidth() {
+	_pixy.GetBlocks(2);
+	return (_pixy.blocks[0].width + _pixy.blocks[1].width);
 }
 
 // Put methods for controlling this subsystem

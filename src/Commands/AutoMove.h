@@ -14,7 +14,7 @@ public:
 	void Interrupted();
 private:
 	double _relativeDistance = 0;
-	double _speed = 0.5;
+	double _speed = 0.7;
 	bool _leftFinished = false;
 	bool _rightFinished = false;
 	bool _firstExecute = true;

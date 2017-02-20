@@ -12,18 +12,21 @@ void PlaceCog::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void PlaceCog::Execute() {
-	ultraLeftFinished = driveTrain->GetUltraFrontLeft() < 4;
-	ultraRightFinished = driveTrain->GetUltraFrontRight() < 4;
-	double speed = 0.5;
-	double heading = cogPixy->GetX() / 50;
-	if (!ultraLeftFinished and !ultraRightFinished) {
-		driveTrain->TankDrive(speed + heading, speed - heading);
+	double speed = -0.45;
+	double heading = (cogPixy->GetX() - 159.5) / (319);
+	std::cout << heading << std::endl;
+	if (heading < 0) {
+		driveTrain->TankDrive(speed - fabs(heading), speed);
 	}
+	else {
+		driveTrain->TankDrive(speed, speed - fabs(heading));
+	}
+
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool PlaceCog::IsFinished() {
-	return ultraLeftFinished and ultraRightFinished;
+	return cogPixy->GetWidth() > 40;
 }
 
 // Called once after isFinished returns true

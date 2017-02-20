@@ -14,7 +14,7 @@ public:
 	void Interrupted();
 private:
 	double _relativeAngle = 0;
-	double _speed = 0.5;
+	double _speed = 0.6;
 	bool _firstExecute = true;
 };
 

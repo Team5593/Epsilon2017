@@ -31,6 +31,8 @@ void Robot::RobotInit() {
 	_ballPickupToggle = std::make_unique<BallPickupToggle>();
 	_deliverGearCommandGroup = std::make_unique<DeliverGearCommandGroup>();
 	_lifterToggle = std::make_unique<Lift>();
+
+	CommandBase::driveTrain->GyroCalibrate();
 }
 
 
@@ -53,19 +55,15 @@ void Robot::DisabledPeriodic() {
 
 // Run once when robot enters autonomous mode
 void Robot::AutonomousInit() {
-	CommandBase::driveTrain->GyroCalibrate();
 	CommandBase::driveTrain->EncResetAll();
 	CommandBase::driveTrain->GyroReset();
 	std::cout << "AutonomousInit" << std::endl;
 
 	std::vector<std::pair<AutoCommand_t, double>> commandVec;
 
-	commandVec.push_back({AutoCommand_t::AutoMoveCommand, 73});
-	commandVec.push_back({AutoCommand_t::AutoRotateCommand, -30});
-	commandVec.push_back({AutoCommand_t::AutoMoveCommand, 35});
-	commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
-	commandVec.push_back({AutoCommand_t::AutoMoveCommand, 40});
-
+	//commandVec.push_back({AutoCommand_t::AutoMoveCommand, -106});
+	//commandVec.push_back({AutoCommand_t::AutoRotateCommand, 60});
+	commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 0});
 	_deliverGearCommandGroup->Initialize(commandVec);
 
 	_deliverGearCommandGroup->Start();
@@ -88,13 +86,17 @@ void Robot::TeleopInit() {
 	CommandBase::oi->SetButtonHeldCommand( 2, (Command *)_ballPickupToggle.get());
 	CommandBase::oi->SetButtonHeldCommand( 4, (Command *)_lifterToggle.get());
 
+	//SmartDashboard::PutNumber("Gyro Angle", CommandBase::driveTrain->GetGyroAngle());
+	//SmartDashboard::PutNumber("Shooter RPM", CommandBase::Shooter->GetEncoder());
+	//SmartDashboard::PutNumber("Cog Pixy X", CommandBase::cogPixy->GetX());
+
 }
 
 // Runs when robot is in teleop mode
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
 	LiveWindow::GetInstance()->Run();
-
+	//std::cout << CommandBase::Shooter->GetEncoder() << std::endl;
 	// ToDo: The SmartDashboard calls below were stalling the Teleop periodic loop. Perhaps one of the calls is blocking.
 	// There's most likely a better approach to this rather than adding raw calls into the Teleop loop.
 	//SmartDashboard::PutNumber("Gyro Angle", CommandBase::driveTrain->GetGyroAngle());
