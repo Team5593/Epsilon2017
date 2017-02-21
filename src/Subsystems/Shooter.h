@@ -1,5 +1,5 @@
 // ============================================================================
-// FileName: ShooterSubsystem.h
+// FileName: Shooter.h
 //
 // Description:
 // Subsystem for a 2017 FRC command based robot that shoots balls into the boiler.
@@ -14,24 +14,24 @@
 // Public Domain
 // ============================================================================
 
-#ifndef ShooterSubsystem_H
-#define ShooterSubsystem_H
+#ifndef Shooter_H
+#define Shooter_H
 
 #include <Commands/Subsystem.h>
 #include "WPILib.h"
 
-class ShooterSubsystem : public Subsystem {
+class Shooter : public Subsystem {
 private:
 	Talon _shooterTalon;
 	Talon _feederTalon;
 	I2C _shooterEncoder;
 
 public:
-	ShooterSubsystem(int shooterChannel, int feederChannel);
+	Shooter(int shooterChannel, int feederChannel);
 	void InitDefaultCommand();
 	void SetShooter(double speed);
 	void SetFeeder(double speed);
 	int GetEncoder();
 };
 
-#endif  // ShooterSubsystem_H
+#endif  // Shooter_H

@@ -5,7 +5,7 @@
 #include <string>
 #include <Commands/Command.h>
 #include "Subsystems/DriveTrain.h"
-#include "Subsystems/ShooterSubsystem.h"
+#include "Subsystems/Shooter.h"
 #include "Subsystems/BallPickup.h"
 #include "Subsystems/CogPixy.h"
 #include "Subsystems/Lifter.h"
@@ -20,7 +20,7 @@ public:
 
 	// Create a single static instance of all of your subsystems
 	static std::unique_ptr<DriveTrain> driveTrain;
-	static std::unique_ptr<ShooterSubsystem> Shooter;
+	static std::unique_ptr<Shooter> shooter;
 	static std::unique_ptr<BallPickup> ballPickup;
 	static std::unique_ptr<CogPixy> cogPixy;
 	static std::unique_ptr<Lifter> lifter;

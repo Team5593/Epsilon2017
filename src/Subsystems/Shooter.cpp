@@ -1,8 +1,8 @@
 // ============================================================================
-// FileName: ShooterSubsystem.cpp
+// FileName: Shooter.cpp
 //
 // Description:
-// Implementation for ShooterSubsystem class. See header for full description.
+// Implementation for Shooter class. See header for full description.
 //
 // Author(s):
 // Team 5593
@@ -14,9 +14,9 @@
 // Public Domain
 // ============================================================================
 
-#include "ShooterSubsystem.h"
+#include "Shooter.h"
 
-ShooterSubsystem::ShooterSubsystem(int shooterChannel, int feederChannel) : Subsystem("ShooterSubsystem"),
+Shooter::Shooter(int shooterChannel, int feederChannel) : Subsystem("Shooter"),
 	_shooterTalon{shooterChannel},
 	_feederTalon{feederChannel},
 	_shooterEncoder{I2C::kOnboard, 0x08}
@@ -24,20 +24,20 @@ ShooterSubsystem::ShooterSubsystem(int shooterChannel, int feederChannel) : Subs
 
 }
 
-void ShooterSubsystem::InitDefaultCommand() {
+void Shooter::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());
 }
 
-void ShooterSubsystem::SetShooter(double speed) {
+void Shooter::SetShooter(double speed) {
 	_shooterTalon.Set(-speed);
 }
 
-void ShooterSubsystem::SetFeeder(double speed) {
+void Shooter::SetFeeder(double speed) {
 	_feederTalon.Set(speed);
 }
 
-int ShooterSubsystem::GetEncoder() {
+int Shooter::GetEncoder() {
 	uint8_t val[1];
 	_shooterEncoder.ReadOnly( 1, val);
 	//std::cout << "Encoder Shooter: " << int(val[0]) << std::endl;
