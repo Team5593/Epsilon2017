@@ -34,12 +34,11 @@ constexpr int LIFTER_SPARK_RIGHT = 4;
 
 // Shooter
 const int SHOOTER_TALON_PIN = 2;
-const bool SHOOTER_DEFAULT_DIRECTION = 1; // Inverted
-const double SHOOTER_DEFAULT_SPEED = 0.95;
+const double SHOOTER_SPEED = -0.95;
 
 // Ball Pickup
 const int PICKUP_TALON = 5;
-const bool PICKUP_DEFAULT_DIRECTION = 1; // Inverted
+const int PICKUP_SPEED = -1.0;
 
 // Driver Mapping
 constexpr int DRIVER_JOY_NUM = 0;

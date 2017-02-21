@@ -14,7 +14,7 @@ void BallPickupToggle::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void BallPickupToggle::Execute() {
 	//std::cout << "BallPickupToggle::Execute." << std::endl;
-	ballPickup->Set(-_isOn);
+	ballPickup->Set(PICKUP_SPEED * _isOn);
 	CommandBase::oi->SetRumbleRight(_isOn * 0.5);
 }
 
