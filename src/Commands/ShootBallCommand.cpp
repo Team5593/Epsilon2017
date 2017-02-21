@@ -17,7 +17,7 @@
 #include "ShootBallCommand.h"
 
 ShootBallCommand::ShootBallCommand() {
-	Requires(CommandBase::Shooter.get());
+	Requires(CommandBase::shooter.get());
 }
 
 void ShootBallCommand::Initialize() {
@@ -29,8 +29,8 @@ void ShootBallCommand::Initialize() {
 void ShootBallCommand::Execute() {
 
 	//std::cout << "ShootBallCommand::Execute." << std::endl;
-	CommandBase::Shooter->SetShooter(SHOOTER_SPEED*_isOn);
-	CommandBase::Shooter->SetFeeder(1.0*_isOn);
+	CommandBase::shooter->SetShooter(SHOOTER_SPEED*_isOn);
+	CommandBase::shooter->SetFeeder(1.0*_isOn);
 	CommandBase::oi->SetRumbleLeft(_isOn * 0.5);
 }
 
