@@ -15,8 +15,8 @@ constexpr frc::I2C::Port PIXY_PORT = frc::I2C::Port::kOnboard;
 constexpr uint8_t PIXY_ADDR = 0x54;
 
 // Drive Train
-constexpr int DRIVETRAIN_LEFT_MOTOR = 0;
-constexpr int DRIVETRAIN_RIGHT_MOTOR = 1;
+constexpr int DRIVETRAIN_LEFT_MOTOR = 1;
+constexpr int DRIVETRAIN_RIGHT_MOTOR = 0;
 constexpr double DRIVETRAIN_MAX_SPEED = 1.0;
 constexpr double DRIVETRAIN_DEFAULT_SPEED = 0.5;
 constexpr double DRIVETRAIN_SHIFT_SPEED = 1.0;

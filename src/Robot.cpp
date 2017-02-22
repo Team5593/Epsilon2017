@@ -33,6 +33,8 @@ void Robot::RobotInit() {
 	_lifterToggle = std::make_unique<Lift>();
 
 	CommandBase::driveTrain->GyroCalibrate();
+
+	CameraServer::GetInstance()->StartAutomaticCapture();
 }
 
 
@@ -61,8 +63,8 @@ void Robot::AutonomousInit() {
 
 	std::vector<std::pair<AutoCommand_t, double>> commandVec;
 
-	//commandVec.push_back({AutoCommand_t::AutoMoveCommand, -106});
-	//commandVec.push_back({AutoCommand_t::AutoRotateCommand, 60});
+	commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
+	commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
 	commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 0});
 	_deliverGearCommandGroup->Initialize(commandVec);
 
