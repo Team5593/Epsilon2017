@@ -85,9 +85,9 @@ void Robot::TeleopInit() {
 	//if (autonomousCommand != NULL) {
 	//	autonomousCommand->Cancel();
 	//}
-	CommandBase::oi->SetButtonHeldCommand( 1, (Command *)_shootBallCommand.get());
-	CommandBase::oi->SetButtonHeldCommand( 2, (Command *)_ballPickupToggle.get());
-	CommandBase::oi->SetButtonHeldCommand( 4, (Command *)_lifterToggle.get());
+	CommandBase::oi->SetButtonHeldCommand( DRIVER_SHOOTER_BUTTON, (Command *)_shootBallCommand.get());
+	CommandBase::oi->SetButtonHeldCommand( DRIVER_PICKUP_BUTTON, (Command *)_ballPickupToggle.get());
+	CommandBase::oi->SetButtonHeldCommand( DRIVER_LIFTER_BUTTON, (Command *)_lifterToggle.get());
 
 	//SmartDashboard::PutNumber("Gyro Angle", CommandBase::driveTrain->GetGyroAngle());
 	//SmartDashboard::PutNumber("Shooter RPM", CommandBase::Shooter->GetEncoder());

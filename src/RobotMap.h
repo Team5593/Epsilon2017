@@ -45,6 +45,9 @@ constexpr int DRIVER_JOY_NUM = 0;
 constexpr int DRIVER_SPEED_AXIS = 3;
 constexpr int DRIVER_THROTTLE_AXIS = 1;
 constexpr int DRIVER_HEADING_AXIS = 4;
+constexpr int DRIVER_SHOOTER_BUTTON = 1;
+constexpr int DRIVER_PICKUP_BUTTON = 2;
+constexpr int DRIVER_LIFTER_BUTTON = 4;
 
 // Assistant Mapping
 constexpr int ASSISTANT_JOY_NUM = 1;
