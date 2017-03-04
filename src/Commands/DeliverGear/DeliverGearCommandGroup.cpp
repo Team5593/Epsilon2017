@@ -45,7 +45,7 @@ void DeliverGearCommandGroup::Initialize(std::vector<std::pair<AutoCommand_t, do
 			{
 				std::cout << "AutoRotate" << item.second << std::endl;
 				auto autoPlaceCogCommand = new PlaceCog();
-				autoPlaceCogCommand->Initialize();
+				autoPlaceCogCommand->Initialize(item.second);
 				AddSequential(autoPlaceCogCommand, EXPIRY_SECONDS);
 				break;
 			}
