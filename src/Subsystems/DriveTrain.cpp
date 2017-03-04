@@ -1,7 +1,7 @@
 #include "DriveTrain.h"
 #include "../Commands/Drive.h"
 
-DriveTrain::DriveTrain(int leftMotorChannel, int rightMotorChannel, int encLeftChannelA, int encLeftChannelB, int encRightChannelA, int encRightChannelB, int analogGyroChannel, int ultraLeftChannel, int ultraRightChannel) :
+DriveTrain::DriveTrain(int leftMotorChannel, int rightMotorChannel, int encLeftChannelA, int encLeftChannelB, int encRightChannelA, int encRightChannelB, int analogGyroChannel) :
 	frc::Subsystem("DriveTrain"),
 	_robotDrive(leftMotorChannel, rightMotorChannel),
 	_encLeft(encLeftChannelA, encLeftChannelB),
