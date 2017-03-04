@@ -58,9 +58,9 @@ void Robot::DisabledPeriodic() {
 
 // Run once when robot enters autonomous mode
 void Robot::AutonomousInit() {
+	std::cout << "AutonomousInit" << std::endl;
 	CommandBase::driveTrain->EncResetAll();
 	CommandBase::driveTrain->GyroReset();
-	std::cout << "AutonomousInit" << std::endl;
 
 	std::vector<std::pair<AutoCommand_t, double>> commandVec;
 
@@ -99,17 +99,10 @@ void Robot::TeleopInit() {
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
 	LiveWindow::GetInstance()->Run();
-	//std::cout << CommandBase::Shooter->GetEncoder() << std::endl;
-	// ToDo: The SmartDashboard calls below were stalling the Teleop periodic loop. Perhaps one of the calls is blocking.
-	// There's most likely a better approach to this rather than adding raw calls into the Teleop loop.
-	//SmartDashboard::PutNumber("Gyro Angle", CommandBase::driveTrain->GetGyroAngle());
-	//SmartDashboard::PutNumber("Shooter RPM", CommandBase::Shooter->GetEncoder());
-	//SmartDashboard::PutNumber("Cog Pixy X", CommandBase::cogPixy->GetX());
 }
 
 // Run once when robot enters test mode
-void Robot::TestInit()
-{
+void Robot::TestInit() {
 	std::cout << "TestInit" << std::endl;
 }
 
