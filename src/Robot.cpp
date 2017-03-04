@@ -36,6 +36,7 @@ void Robot::RobotInit() {
 
 	CameraServer::GetInstance()->StartAutomaticCapture("Front Camera" , 0);
 	CameraServer::GetInstance()->StartAutomaticCapture("Hopper Camera", 1);
+	//CameraServer::GetInstance()->StartAutomaticCapture("Front Floor Facing", 3);
 }
 
 
