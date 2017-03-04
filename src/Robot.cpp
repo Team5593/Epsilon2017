@@ -34,7 +34,8 @@ void Robot::RobotInit() {
 
 	CommandBase::driveTrain->GyroCalibrate();
 
-	CameraServer::GetInstance()->StartAutomaticCapture();
+	CameraServer::GetInstance()->StartAutomaticCapture("Front Camera" ,0);
+	CameraServer::GetInstance()->StartAutomaticCapture("Hopper Camera" ,1);
 }
 
 
