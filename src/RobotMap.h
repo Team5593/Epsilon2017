@@ -25,8 +25,6 @@ constexpr int DRIVETRAIN_ENC_LEFT_B = 8;
 constexpr int DRIVETRAIN_ENC_RIGHT_A = 7;
 constexpr int DRIVETRAIN_ENC_RIGHT_B = 6;
 constexpr int DRIVETRAIN_ANALOG_GYRO = 0;
-constexpr int DRIVETRAIN_ULTRA_LEFT = 0;
-constexpr int DRIVETRAIN_ULTRA_RIGHT = 1;
 
 // Lifting
 constexpr int LIFTER_SPARK_LEFT = 3;
