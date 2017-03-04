@@ -46,5 +46,4 @@ void ShootBallCommand::End() {
 void ShootBallCommand::Interrupted() {
 	std::cout << "ShootBallCommand::Interrupted." << std::endl;
 	 _isFinished = true;
-	 CommandBase::oi->SetRumbleLeft(0.0);
 }
