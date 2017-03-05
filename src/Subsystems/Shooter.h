@@ -19,6 +19,7 @@
 
 #include <Commands/Subsystem.h>
 #include "WPILib.h"
+#include "RobotMap.h"
 
 class Shooter : public Subsystem {
 private:
@@ -26,11 +27,16 @@ private:
 	Talon _feederTalon;
 	I2C _shooterEncoder;
 
+	double _shooterSpeed = SHOOTER_SPEED;
+	double _feederSpeed = FEEDER_SPEED;
+
 public:
 	Shooter(int shooterChannel, int feederChannel);
 	void InitDefaultCommand();
-	void SetShooter(double speed);
-	void SetFeeder(double speed);
+	void Enable();
+	void Disable();
+	void SetShooterSpeed(double speed);
+	void SetFeederSpeed(double speed);
 	int GetEncoder();
 };
 

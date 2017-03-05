@@ -29,8 +29,13 @@ void ShootBallCommand::Initialize() {
 void ShootBallCommand::Execute() {
 
 	//std::cout << "ShootBallCommand::Execute." << std::endl;
-	CommandBase::shooter->SetShooter(SHOOTER_SPEED*_isOn);
-	CommandBase::shooter->SetFeeder(1.0*_isOn);
+	if (_isOn) {
+		CommandBase::shooter->Enable();
+	}
+	else {
+		CommandBase::shooter->Disable();
+	}
+
 	CommandBase::oi->SetRumbleLeft(_isOn * 0.5);
 }
 

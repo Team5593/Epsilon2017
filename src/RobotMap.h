@@ -33,6 +33,7 @@ constexpr int LIFTER_SPARK_RIGHT = 4;
 // Shooter
 const int SHOOTER_TALON_PIN = 2;
 const double SHOOTER_SPEED = -0.95;
+const double FEEDER_SPEED = 1.0;
 
 // Ball Pickup
 const int PICKUP_TALON = 5;

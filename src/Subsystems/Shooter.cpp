@@ -29,12 +29,22 @@ void Shooter::InitDefaultCommand() {
 	// SetDefaultCommand(new MySpecialCommand());
 }
 
-void Shooter::SetShooter(double speed) {
-	_shooterTalon.Set(-speed);
+void Shooter::Enable() {
+	_shooterTalon.Set(_shooterSpeed);
+	_feederTalon.Set(_feederSpeed);
 }
 
-void Shooter::SetFeeder(double speed) {
-	_feederTalon.Set(speed);
+void Shooter::Disable() {
+	_shooterTalon.Set(0.0);
+	_feederTalon.Set(0.0);
+}
+
+void Shooter::SetShooterSpeed(double speed) {
+	_shooterSpeed = speed;
+}
+
+void Shooter::SetFeederSpeed(double speed) {
+	_feederSpeed = speed;
 }
 
 int Shooter::GetEncoder() {
