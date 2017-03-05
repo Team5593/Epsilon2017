@@ -19,7 +19,7 @@
 Shooter::Shooter(int shooterChannel, int feederChannel) : Subsystem("Shooter"),
 	_shooterTalon{shooterChannel},
 	_feederTalon{feederChannel},
-	_shooterEncoder{I2C::kOnboard, 0x08}
+	_shooterEncoder{frc::I2C::kOnboard, 0x08}
 {
 
 }
