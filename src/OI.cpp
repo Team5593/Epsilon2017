@@ -2,6 +2,7 @@
 
 OI::OI(int joystickNumber) :
 	_driverJoy(joystickNumber),
+	_gamepad(1),
 	_joystickButton1(&_driverJoy, 1),
 	_joystickButton2(&_driverJoy, 2),
 	_joystickButton3(&_driverJoy, 3),
@@ -20,6 +21,10 @@ double OI::GetSpeedAxis() {
 	double speed = _driverJoy.GetRawAxis(DRIVER_SPEED_AXIS);
 	//std::cout << "Speed Axis Checked: " << speed << std::endl;
 	return speed;
+}
+
+double OI::GetShooterAxis() {
+	return _gamepad.GetRawAxis(0);
 }
 
 void OI::SetRumbleLeft(double value) {
@@ -98,4 +103,12 @@ void OI::SetButtonToggleWhenPressedCommand(int buttonNum, Command * command) {
 			std::cout << "Button number " << buttonNum << " has not been configured in OI.cpp." << std::endl;
 
 	}
+}
+
+void OI::SetGamepadOutput(int output, bool value) {
+	_gamepad.SetOutput(output, value);
+}
+
+bool OI::GetGamepadInput(int input) {
+	return _gamepad.GetRawButton(input);
 }

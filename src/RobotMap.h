@@ -48,7 +48,19 @@ constexpr int DRIVER_SHOOTER_BUTTON = 1;
 constexpr int DRIVER_PICKUP_BUTTON = 2;
 constexpr int DRIVER_LIFTER_BUTTON = 4;
 
-// Assistant Mapping
-constexpr int ASSISTANT_JOY_NUM = 1;
+// Gamepad Mapping
+constexpr int GAMEPAD_JOY_NUM = 1;
+constexpr int GAMEPAD_BUTTON_1 = 3;
+constexpr int GAMEPAD_BUTTON_2 = 2;
+constexpr int GAMEPAD_BUTTON_3 = 1;
+constexpr int GAMEPAD_BUTTON_4 = 4;
+constexpr int GAMEPAD_BUTTON_5 = 5;
+constexpr int GAMEPAD_BUTTON_6 = 6;
+constexpr int GAMEPAD_OUTPUT_1 = 1;
+constexpr int GAMEPAD_OUTPUT_2 = 2;
+constexpr int GAMEPAD_OUTPUT_3 = 3;
+constexpr int GAMEPAD_OUTPUT_4 = 4;
+constexpr int GAMEPAD_OUTPUT_5 = 7;
+constexpr int GAMEPAD_OUTPUT_6 = 6;
 
 #endif  // ROBOTMAP_H
