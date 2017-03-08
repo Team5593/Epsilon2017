@@ -100,6 +100,8 @@ public:
   
   Block *blocks;
   
+  uint16_t blockCount;
+
 private:
   bool GetStart();
   void Resize();
@@ -107,7 +109,7 @@ private:
   LinkType link;
   bool  skipStart;
   BlockType blockType;
-  uint16_t blockCount;
+  //uint16_t blockCount;
   uint16_t blockArraySize;
 };
 
