@@ -62,5 +62,6 @@ constexpr int GAMEPAD_OUTPUT_3 = 3;
 constexpr int GAMEPAD_OUTPUT_4 = 4;
 constexpr int GAMEPAD_OUTPUT_5 = 7;
 constexpr int GAMEPAD_OUTPUT_6 = 6;
+constexpr int GAMEPAD_SHOOTER_AXIS = 0;
 
 #endif  // ROBOTMAP_H

@@ -24,7 +24,7 @@ double OI::GetSpeedAxis() {
 }
 
 double OI::GetShooterAxis() {
-	return _gamepad.GetRawAxis(0);
+	return _gamepad.GetRawAxis(GAMEPAD_SHOOTER_AXIS);
 }
 
 void OI::SetRumbleLeft(double value) {
