@@ -43,32 +43,41 @@ void Robot::RobotInit() {
 // Runs all of the time (including during disabled methods)
 void Robot::RobotPeriodic() {
 	//std::cout << "RobotPeriodic" << std::endl;
+
+	if (CommandBase::oi->GetGamepadInput(GAMEPAD_BUTTON_R)) _autonomousSide = false;
+	else if (CommandBase::oi->GetGamepadInput(GAMEPAD_BUTTON_B)) _autonomousSide = true;
+
+
+	switch (_autonomousSide) {
+	case false: _outputSide = GAMEPAD_OUTPUT_R; break;
+	case true: _outputSide = GAMEPAD_OUTPUT_B; break;
+	default: _outputSide = GAMEPAD_OUTPUT_R;
+	}
+
 	if (CommandBase::oi->GetGamepadInput(GAMEPAD_BUTTON_1)) _autonomousNum = 0;
 	else if (CommandBase::oi->GetGamepadInput(GAMEPAD_BUTTON_2)) _autonomousNum = 1;
 	else if (CommandBase::oi->GetGamepadInput(GAMEPAD_BUTTON_3)) _autonomousNum = 2;
 	else if (CommandBase::oi->GetGamepadInput(GAMEPAD_BUTTON_4)) _autonomousNum = 3;
-	else if (CommandBase::oi->GetGamepadInput(GAMEPAD_BUTTON_5)) _autonomousNum = 4;
-	else if (CommandBase::oi->GetGamepadInput(GAMEPAD_BUTTON_6)) _autonomousNum = 5;
 
-	int _outputNum;
+
 	switch (_autonomousNum) {
 	case 0: _outputNum = GAMEPAD_OUTPUT_1; break;
 	case 1: _outputNum = GAMEPAD_OUTPUT_2; break;
 	case 2: _outputNum = GAMEPAD_OUTPUT_3; break;
 	case 3: _outputNum = GAMEPAD_OUTPUT_4; break;
-	case 4: _outputNum = GAMEPAD_OUTPUT_5; break;
-	case 5: _outputNum = GAMEPAD_OUTPUT_6; break;
 	default: _outputNum = GAMEPAD_OUTPUT_1;
 	}
+
 	// Clear Outputs
 	CommandBase::oi->SetGamepadOutput(GAMEPAD_OUTPUT_1, false);
 	CommandBase::oi->SetGamepadOutput(GAMEPAD_OUTPUT_2, false);
 	CommandBase::oi->SetGamepadOutput(GAMEPAD_OUTPUT_3, false);
 	CommandBase::oi->SetGamepadOutput(GAMEPAD_OUTPUT_4, false);
-	CommandBase::oi->SetGamepadOutput(GAMEPAD_OUTPUT_5, false);
-	CommandBase::oi->SetGamepadOutput(GAMEPAD_OUTPUT_6, false);
-
+	CommandBase::oi->SetGamepadOutput(GAMEPAD_OUTPUT_R, false);
+	CommandBase::oi->SetGamepadOutput(GAMEPAD_OUTPUT_B, false);
+	// Set Output
 	CommandBase::oi->SetGamepadOutput(_outputNum, true);
+	CommandBase::oi->SetGamepadOutput(_outputSide, true);
 }
 
 // Run once when robot enters disabled mode
@@ -90,39 +99,57 @@ void Robot::AutonomousInit() {
 	CommandBase::driveTrain->GyroReset();
 
 	std::vector<std::pair<AutoCommand_t, double>> commandVec;
-
-	switch(_autonomousNum) {
-	case 0:
-		commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
-		commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
-		commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
-		break;
-	case 1:
-		commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
-		commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
-		commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
-		break;
-	case 2:
-		commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
-		commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
-		commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
-		break;
-	case 3:
-		commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
-		commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
-		commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
-		break;
-	case 4:
-		commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
-		commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
-		commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
-		break;
-	case 5:
-		commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
-		commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
-		commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
-		break;
+	if (_autonomousSide == false) {
+		// RED Side
+		switch(_autonomousNum) {
+		case 0:
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
+			break;
+		case 1:
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
+			break;
+		case 2:
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
+			break;
+		case 3:
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
+			break;
+		}
 	}
+	else {
+		// BLUE Side
+		switch(_autonomousNum) {
+		case 0:
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
+			break;
+		case 1:
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
+			break;
+		case 2:
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
+			break;
+		case 3:
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
+			break;
+		}
+	}
+
 
 	_deliverGearCommandGroup->Initialize(commandVec);
 
