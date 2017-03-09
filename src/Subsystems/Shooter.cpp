@@ -16,7 +16,7 @@
 
 #include "Shooter.h"
 
-Shooter::Shooter(int shooterChannel, int feederChannel) : Subsystem("Shooter"),
+Shooter::Shooter(int shooterChannel, int feederChannel) : frc::PIDSubsystem("Shooter", kP_real, kI_real, kD_real),
 	_shooterTalon{shooterChannel},
 	_feederTalon{feederChannel},
 	_shooterEncoder{frc::I2C::kOnboard, 0x08}
@@ -29,18 +29,14 @@ void Shooter::InitDefaultCommand() {
 	// SetDefaultCommand(new MySpecialCommand());
 }
 
-void Shooter::Enable() {
-	_shooterTalon.Set(_shooterSpeed);
-	_feederTalon.Set(_feederSpeed);
+double Shooter::ReturnPIDInput() {
+	//return GetEncoder() / SHOOTER_MAX_RPM;
+	return 0.95; // Bodge value
 }
 
-void Shooter::Disable() {
-	_shooterTalon.Set(0.0);
-	_feederTalon.Set(0.0);
-}
-
-void Shooter::SetShooterSpeed(double speed) {
-	_shooterSpeed = speed;
+void Shooter::UsePIDOutput(double d) {
+	_shooterTalon.PIDWrite(d);
+	_shooterTalon.Set(FEEDER_SPEED * d);
 }
 
 void Shooter::SetFeederSpeed(double speed) {

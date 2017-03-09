@@ -32,7 +32,8 @@ constexpr int LIFTER_SPARK_RIGHT = 4;
 
 // Shooter
 const int SHOOTER_TALON_PIN = 2;
-const double SHOOTER_SPEED = -0.95;
+const double SHOOTER_DEFAULT_RPM = 5500; // R/M
+constexpr int SHOOTER_MAX_RPM = 6000; // 6K R/M
 const double FEEDER_SPEED = 1.0;
 
 // Ball Pickup

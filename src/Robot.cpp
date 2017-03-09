@@ -169,7 +169,7 @@ void Robot::TeleopInit() {
 	//if (autonomousCommand != NULL) {
 	//	autonomousCommand->Cancel();
 	//}
-	CommandBase::oi->SetButtonHeldCommand( DRIVER_SHOOTER_BUTTON, (Command *)_shootBallCommand.get());
+	CommandBase::oi->SetButtonPressedCommand( DRIVER_SHOOTER_BUTTON, (Command *)_shootBallCommand.get());
 	CommandBase::oi->SetButtonHeldCommand( DRIVER_PICKUP_BUTTON, (Command *)_ballPickupToggle.get());
 	CommandBase::oi->SetButtonHeldCommand( DRIVER_LIFTER_BUTTON, (Command *)_lifterToggle.get());
 

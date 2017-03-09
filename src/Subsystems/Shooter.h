@@ -20,22 +20,28 @@
 #include <Commands/Subsystem.h>
 #include "WPILib.h"
 #include "RobotMap.h"
+#include <Commands/PIDSubsystem.h>
 
-class Shooter : public Subsystem {
+class Shooter : public frc::PIDSubsystem {
 private:
 	Talon _shooterTalon;
 	Talon _feederTalon;
 	I2C _shooterEncoder;
 
-	double _shooterSpeed = SHOOTER_SPEED;
+	double _shooterSpeed = SHOOTER_DEFAULT_RPM;
 	double _feederSpeed = FEEDER_SPEED;
+
+	static constexpr double kP_real = 4;
+	static constexpr double kI_real = 2;
+	static constexpr double kD_real = 2;
 
 public:
 	Shooter(int shooterChannel, int feederChannel);
 	void InitDefaultCommand();
-	void Enable();
-	void Disable();
-	void SetShooterSpeed(double speed);
+	// PID
+	double ReturnPIDInput();
+	void UsePIDOutput(double d);
+
 	void SetFeederSpeed(double speed);
 	int GetEncoder();
 };
