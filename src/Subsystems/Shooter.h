@@ -32,8 +32,8 @@ private:
 	double _feederSpeed = FEEDER_SPEED;
 
 	static constexpr double kP_real = 4;
-	static constexpr double kI_real = 2;
-	static constexpr double kD_real = 2;
+	static constexpr double kI_real = 0.005;
+	static constexpr double kD_real = 4;
 
 public:
 	Shooter(int shooterChannel, int feederChannel);

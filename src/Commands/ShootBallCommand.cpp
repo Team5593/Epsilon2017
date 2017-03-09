@@ -24,12 +24,12 @@ void ShootBallCommand::Initialize() {
 	std::cout << "ShootBallCommand::Initialize." << std::endl;
 	_isOn = !_isOn;
 	CommandBase::shooter->Enable();
+	CommandBase::oi->SetRumbleLeft(0.5*_isOn);
 }
 
 void ShootBallCommand::Execute() {
-	std::cout << "ShootBallCommand::Execute." << CommandBase::shooter->GetSetpoint()*_isOn << std::endl;
-	CommandBase::shooter->SetSetpoint(CommandBase::oi->GetShooterAxis()*_isOn);
-	CommandBase::oi->SetRumbleLeft(0.5*_isOn);
+	std::cout << "ShootBallCommand::Execute." << std::endl;
+
 }
 
 bool ShootBallCommand::IsFinished() {
@@ -45,4 +45,7 @@ void ShootBallCommand::End() {
 
 void ShootBallCommand::Interrupted() {
 	std::cout << "ShootBallCommand::Interrupted." << std::endl;
+	if (!_isOn) {
+		End();
+	}
 }

@@ -30,7 +30,7 @@ void Shooter::InitDefaultCommand() {
 }
 
 double Shooter::ReturnPIDInput() {
-	//return GetEncoder() / SHOOTER_MAX_RPM;
+	//return -GetEncoder() / SHOOTER_MAX_RPM;
 	return 0.95; // Bodge value
 }
 
