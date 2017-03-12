@@ -111,13 +111,12 @@ void Robot::AutonomousInit() {
 		case 1:
 			// Middle Driver Station
 			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
-			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
 			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
 			break;
 		case 2:
 			// Right Driver Station
 			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
-			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, -90});
 			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
 			break;
 		case 3:
@@ -139,13 +138,12 @@ void Robot::AutonomousInit() {
 		case 1:
 			// Middle Driver Station
 			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
-			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
 			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
 			break;
 		case 2:
 			// Right Driver Station
 			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
-			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, -90});
 			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
 			break;
 		case 3:
