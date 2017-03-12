@@ -33,6 +33,7 @@ void Robot::RobotInit() {
 	_lifterToggle = std::make_unique<Lift>();
 
 	CommandBase::driveTrain->GyroCalibrate();
+	CameraServer::GetInstance()->StartAutomaticCapture();
 }
 
 
