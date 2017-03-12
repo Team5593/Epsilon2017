@@ -122,9 +122,8 @@ void Robot::AutonomousInit() {
 			break;
 		case 3:
 			// Spare
-			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
-			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
-			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -150});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 180});
 			break;
 		}
 	}
@@ -151,9 +150,8 @@ void Robot::AutonomousInit() {
 			break;
 		case 3:
 			// Spare
-			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
-			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
-			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -150});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 180});
 			break;
 		}
 	}
