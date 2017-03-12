@@ -103,21 +103,25 @@ void Robot::AutonomousInit() {
 		// RED Side
 		switch(_autonomousNum) {
 		case 0:
+			// Left Driver Station
 			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
 			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
 			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
 			break;
 		case 1:
+			// Middle Driver Station
 			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
 			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
 			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
 			break;
 		case 2:
+			// Right Driver Station
 			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
 			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
 			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
 			break;
 		case 3:
+			// Spare
 			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
 			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
 			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
@@ -128,21 +132,25 @@ void Robot::AutonomousInit() {
 		// BLUE Side
 		switch(_autonomousNum) {
 		case 0:
+			// Left Driver Station
 			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
 			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
 			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
 			break;
 		case 1:
+			// Middle Driver Station
 			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
 			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
 			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
 			break;
 		case 2:
+			// Right Driver Station
 			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
 			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
 			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
 			break;
 		case 3:
+			// Spare
 			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
 			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
 			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
