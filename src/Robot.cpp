@@ -180,14 +180,10 @@ void Robot::TeleopInit() {
 		_deliverGearCommandGroup->Cancel();
 	}
 
+	// Attach buttons to commands
 	CommandBase::oi->SetButtonHeldCommand( DRIVER_SHOOTER_BUTTON, (Command *)_shootBallCommand.get());
 	CommandBase::oi->SetButtonHeldCommand( DRIVER_PICKUP_BUTTON, (Command *)_ballPickupToggle.get());
 	CommandBase::oi->SetButtonHeldCommand( DRIVER_LIFTER_BUTTON, (Command *)_lifterToggle.get());
-
-	//SmartDashboard::PutNumber("Gyro Angle", CommandBase::driveTrain->GetGyroAngle());
-	//SmartDashboard::PutNumber("Shooter RPM", CommandBase::Shooter->GetEncoder());
-	//SmartDashboard::PutNumber("Cog Pixy X", CommandBase::cogPixy->GetX());
-
 }
 
 // Runs when robot is in teleop mode
@@ -195,8 +191,10 @@ void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
 	LiveWindow::GetInstance()->Run();
 
+	// Set shooter value
 	CommandBase::shooter->SetSetpoint(CommandBase::oi->GetShooterAxis());
 
+	// Smart dashboard
 	SmartDashboard::PutNumber("Shooter RPM", CommandBase::oi->GetEncoder());
 	SmartDashboard::PutNumber("Shooter Setpoint", CommandBase::oi->GetSetpoint());
 }
