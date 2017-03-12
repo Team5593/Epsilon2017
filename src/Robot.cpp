@@ -83,6 +83,7 @@ void Robot::RobotPeriodic() {
 // Run once when robot enters disabled mode
 void Robot::DisabledInit() {
 	std::cout << "DisabledInit" << std::endl;
+
 	CommandBase::oi->SetRumbleLeft(0.0);
 	CommandBase::oi->SetRumbleRight(0.0);
 }
@@ -95,6 +96,7 @@ void Robot::DisabledPeriodic() {
 // Run once when robot enters autonomous mode
 void Robot::AutonomousInit() {
 	std::cout << "AutonomousInit" << std::endl;
+
 	CommandBase::driveTrain->EncResetAll();
 	CommandBase::driveTrain->GyroReset();
 
@@ -154,9 +156,7 @@ void Robot::AutonomousInit() {
 		}
 	}
 
-
 	_deliverGearCommandGroup->Initialize(commandVec);
-
 	_deliverGearCommandGroup->Start();
 }
 
@@ -173,6 +173,7 @@ void Robot::TeleopInit() {
 	if (_deliverGearCommandGroup != NULL) {
 		_deliverGearCommandGroup->Cancel();
 	}
+
 	CommandBase::oi->SetButtonHeldCommand( DRIVER_SHOOTER_BUTTON, (Command *)_shootBallCommand.get());
 	CommandBase::oi->SetButtonHeldCommand( DRIVER_PICKUP_BUTTON, (Command *)_ballPickupToggle.get());
 	CommandBase::oi->SetButtonHeldCommand( DRIVER_LIFTER_BUTTON, (Command *)_lifterToggle.get());
@@ -187,6 +188,7 @@ void Robot::TeleopInit() {
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
 	LiveWindow::GetInstance()->Run();
+
 	CommandBase::shooter->SetSetpoint(CommandBase::oi->GetShooterAxis());
 
 	SmartDashboard::PutNumber("Shooter RPM", CommandBase::oi->GetEncoder());
