@@ -13,8 +13,18 @@ void CogPixy::InitDefaultCommand() {
 }
 
 int CogPixy::GetX() {
-	_pixy.GetBlocks(2);
-	return (_pixy.blocks[0].x + _pixy.blocks[0].width/2) + ((_pixy.blocks[0].x + _pixy.blocks[0].width/2) - (_pixy.blocks[1].x + _pixy.blocks[1].width/2)) / 2;
+	_pixy.GetBlocks();
+	// Only select blocks with signature 1
+	int n = 0;
+	int avg = 0;
+	for (int i = 0; i < _pixy.blockCount; i++) {
+		if (_pixy.blocks[i].signature == 1) {
+			n++;
+			avg += _pixy.blocks[i].x;
+		}
+	}
+	avg = avg / n;
+	return avg;
 }
 
 int CogPixy::GetWidth() {

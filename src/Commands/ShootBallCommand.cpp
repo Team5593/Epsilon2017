@@ -22,29 +22,30 @@ ShootBallCommand::ShootBallCommand() {
 
 void ShootBallCommand::Initialize() {
 	std::cout << "ShootBallCommand::Initialize." << std::endl;
-	_isOn = !_isOn; // Toggle the motor on or off
-	_isFinished = false;
+	_isOn = !_isOn;
+	CommandBase::shooter->Enable();
+	CommandBase::oi->SetRumbleLeft(0.5*_isOn);
 }
 
 void ShootBallCommand::Execute() {
+	std::cout << "ShootBallCommand::Execute." << std::endl;
 
-	//std::cout << "ShootBallCommand::Execute." << std::endl;
-	CommandBase::shooter->SetShooter(SHOOTER_SPEED*_isOn);
-	CommandBase::shooter->SetFeeder(1.0*_isOn);
-	CommandBase::oi->SetRumbleLeft(_isOn * 0.5);
 }
 
 bool ShootBallCommand::IsFinished() {
-	return _isFinished;
+	return false;
 }
 
 void ShootBallCommand::End() {
 	std::cout << "ShootBallCommand::End." << std::endl;
 	CommandBase::oi->SetRumbleLeft(0.0);
+	CommandBase::shooter->Disable();
+	//CommandBase::shooter->Disable();
 }
 
 void ShootBallCommand::Interrupted() {
 	std::cout << "ShootBallCommand::Interrupted." << std::endl;
-	 _isFinished = true;
-	 CommandBase::oi->SetRumbleLeft(0.0);
+	if (!_isOn) {
+		End();
+	}
 }

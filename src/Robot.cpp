@@ -33,13 +33,51 @@ void Robot::RobotInit() {
 	_lifterToggle = std::make_unique<Lift>();
 
 	CommandBase::driveTrain->GyroCalibrate();
-	CameraServer::GetInstance()->StartAutomaticCapture();
+
+	//CameraServer::GetInstance()->StartAutomaticCapture("Front Camera" , 0);
+	//CameraServer::GetInstance()->StartAutomaticCapture("Hopper Camera", 1);
+	//CameraServer::GetInstance()->StartAutomaticCapture("Front Floor Facing", 3);
 }
 
 
 // Runs all of the time (including during disabled methods)
 void Robot::RobotPeriodic() {
 	//std::cout << "RobotPeriodic" << std::endl;
+
+	if (CommandBase::oi->GetGamepadInput(GAMEPAD_BUTTON_R)) _autonomousSide = false;
+	else if (CommandBase::oi->GetGamepadInput(GAMEPAD_BUTTON_B)) _autonomousSide = true;
+
+
+	switch (_autonomousSide) {
+	case false: _outputSide = GAMEPAD_OUTPUT_R; break;
+	case true: _outputSide = GAMEPAD_OUTPUT_B; break;
+	default: _outputSide = GAMEPAD_OUTPUT_R;
+	}
+
+	if (CommandBase::oi->GetGamepadInput(GAMEPAD_BUTTON_1)) _autonomousNum = 0;
+	else if (CommandBase::oi->GetGamepadInput(GAMEPAD_BUTTON_2)) _autonomousNum = 1;
+	else if (CommandBase::oi->GetGamepadInput(GAMEPAD_BUTTON_3)) _autonomousNum = 2;
+	else if (CommandBase::oi->GetGamepadInput(GAMEPAD_BUTTON_4)) _autonomousNum = 3;
+
+
+	switch (_autonomousNum) {
+	case 0: _outputNum = GAMEPAD_OUTPUT_1; break;
+	case 1: _outputNum = GAMEPAD_OUTPUT_2; break;
+	case 2: _outputNum = GAMEPAD_OUTPUT_3; break;
+	case 3: _outputNum = GAMEPAD_OUTPUT_4; break;
+	default: _outputNum = GAMEPAD_OUTPUT_1;
+	}
+
+	// Clear Outputs
+	CommandBase::oi->SetGamepadOutput(GAMEPAD_OUTPUT_1, false);
+	CommandBase::oi->SetGamepadOutput(GAMEPAD_OUTPUT_2, false);
+	CommandBase::oi->SetGamepadOutput(GAMEPAD_OUTPUT_3, false);
+	CommandBase::oi->SetGamepadOutput(GAMEPAD_OUTPUT_4, false);
+	CommandBase::oi->SetGamepadOutput(GAMEPAD_OUTPUT_R, false);
+	CommandBase::oi->SetGamepadOutput(GAMEPAD_OUTPUT_B, false);
+	// Set Output
+	CommandBase::oi->SetGamepadOutput(_outputNum, true);
+	CommandBase::oi->SetGamepadOutput(_outputSide, true);
 }
 
 // Run once when robot enters disabled mode
@@ -56,15 +94,63 @@ void Robot::DisabledPeriodic() {
 
 // Run once when robot enters autonomous mode
 void Robot::AutonomousInit() {
+	std::cout << "AutonomousInit" << std::endl;
 	CommandBase::driveTrain->EncResetAll();
 	CommandBase::driveTrain->GyroReset();
-	std::cout << "AutonomousInit" << std::endl;
 
 	std::vector<std::pair<AutoCommand_t, double>> commandVec;
+	if (_autonomousSide == false) {
+		// RED Side
+		switch(_autonomousNum) {
+		case 0:
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
+			break;
+		case 1:
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
+			break;
+		case 2:
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
+			break;
+		case 3:
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
+			break;
+		}
+	}
+	else {
+		// BLUE Side
+		switch(_autonomousNum) {
+		case 0:
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
+			break;
+		case 1:
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
+			break;
+		case 2:
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
+			break;
+		case 3:
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
+			break;
+		}
+	}
 
-	//commandVec.push_back({AutoCommand_t::AutoMoveCommand, -106});
-	//commandVec.push_back({AutoCommand_t::AutoRotateCommand, 60});
-	commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 0});
+
 	_deliverGearCommandGroup->Initialize(commandVec);
 
 	_deliverGearCommandGroup->Start();
@@ -83,9 +169,9 @@ void Robot::TeleopInit() {
 	//if (autonomousCommand != NULL) {
 	//	autonomousCommand->Cancel();
 	//}
-	CommandBase::oi->SetButtonHeldCommand( 1, (Command *)_shootBallCommand.get());
-	CommandBase::oi->SetButtonHeldCommand( 2, (Command *)_ballPickupToggle.get());
-	CommandBase::oi->SetButtonHeldCommand( 4, (Command *)_lifterToggle.get());
+	CommandBase::oi->SetButtonHeldCommand( DRIVER_SHOOTER_BUTTON, (Command *)_shootBallCommand.get());
+	CommandBase::oi->SetButtonHeldCommand( DRIVER_PICKUP_BUTTON, (Command *)_ballPickupToggle.get());
+	CommandBase::oi->SetButtonHeldCommand( DRIVER_LIFTER_BUTTON, (Command *)_lifterToggle.get());
 
 	//SmartDashboard::PutNumber("Gyro Angle", CommandBase::driveTrain->GetGyroAngle());
 	//SmartDashboard::PutNumber("Shooter RPM", CommandBase::Shooter->GetEncoder());
@@ -97,17 +183,11 @@ void Robot::TeleopInit() {
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
 	LiveWindow::GetInstance()->Run();
-	//std::cout << CommandBase::Shooter->GetEncoder() << std::endl;
-	// ToDo: The SmartDashboard calls below were stalling the Teleop periodic loop. Perhaps one of the calls is blocking.
-	// There's most likely a better approach to this rather than adding raw calls into the Teleop loop.
-	//SmartDashboard::PutNumber("Gyro Angle", CommandBase::driveTrain->GetGyroAngle());
-	//SmartDashboard::PutNumber("Shooter RPM", CommandBase::Shooter->GetEncoder());
-	//SmartDashboard::PutNumber("Cog Pixy X", CommandBase::cogPixy->GetX());
+	CommandBase::shooter->SetSetpoint(CommandBase::oi->GetShooterAxis());
 }
 
 // Run once when robot enters test mode
-void Robot::TestInit()
-{
+void Robot::TestInit() {
 	std::cout << "TestInit" << std::endl;
 }
 

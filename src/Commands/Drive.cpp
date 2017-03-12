@@ -12,12 +12,11 @@ void Drive::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void Drive::Execute() {
 	double speed = DRIVETRAIN_DEFAULT_SPEED+(oi->GetSpeedAxis() * (DRIVETRAIN_SHIFT_SPEED - DRIVETRAIN_DEFAULT_SPEED));
-	double forwardSpeed = -oi->GetThrottleAxis()*speed;
-	double headingAngle = oi->GetHeadingAxis()*speed;
+	double forwardSpeed = -oi->GetThrottleAxis();
+	double heading = oi->GetHeadingAxis();
 
-	if (fabs(headingAngle) <= 0.2) headingAngle = 0;
-
-	driveTrain->TankDrive(forwardSpeed+headingAngle, forwardSpeed-headingAngle);
+	if (fabs(heading) <= 0.2) heading = 0;
+	driveTrain->TankDrive((forwardSpeed+heading)*speed, (forwardSpeed-heading)*speed);
 }
 
 // isFinished - Our isFinished method always returns false meaning this command never completes on it's own.

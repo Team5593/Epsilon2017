@@ -90,7 +90,7 @@ struct Block
 template <class LinkType> class TPixy
 {
 public:
-  TPixy();
+  TPixy(uint16_t arg=PIXY_DEFAULT_ARGVAL);
   ~TPixy();
   
   uint16_t GetBlocks(uint16_t maxBlocks=1000);
@@ -100,6 +100,8 @@ public:
   
   Block *blocks;
   
+  uint16_t blockCount;
+
 private:
   bool GetStart();
   void Resize();
@@ -107,17 +109,18 @@ private:
   LinkType link;
   bool  skipStart;
   BlockType blockType;
-  uint16_t blockCount;
+  //uint16_t blockCount;
   uint16_t blockArraySize;
 };
 
 
-template <class LinkType> TPixy<LinkType>::TPixy()
+template <class LinkType> TPixy<LinkType>::TPixy(uint16_t arg)
 {
   skipStart = false;
   blockCount = 0;
   blockArraySize = PIXY_INITIAL_ARRAYSIZE;
   blocks = (Block *)malloc(sizeof(Block)*blockArraySize);
+  link.SetArg(arg);
 }
 
 template <class LinkType> TPixy<LinkType>::~TPixy()

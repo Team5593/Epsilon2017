@@ -13,7 +13,7 @@ public:
 	void End();
 	void Interrupted();
 private:
-	bool _isOn { true };
+	bool _isOn { false };
 	bool _isFinished { false };
 };
 

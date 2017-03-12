@@ -16,10 +16,10 @@
 
 #include "Shooter.h"
 
-Shooter::Shooter(int shooterChannel, int feederChannel) : Subsystem("Shooter"),
+Shooter::Shooter(int shooterChannel, int feederChannel) : frc::PIDSubsystem("Shooter", kP_real, kI_real, kD_real),
 	_shooterTalon{shooterChannel},
 	_feederTalon{feederChannel},
-	_shooterEncoder{I2C::kOnboard, 0x08}
+	_shooterEncoder{frc::I2C::kOnboard, 0x08}
 {
 
 }
@@ -29,12 +29,18 @@ void Shooter::InitDefaultCommand() {
 	// SetDefaultCommand(new MySpecialCommand());
 }
 
-void Shooter::SetShooter(double speed) {
-	_shooterTalon.Set(-speed);
+double Shooter::ReturnPIDInput() {
+	//return -GetEncoder() / SHOOTER_MAX_RPM;
+	return 0.95; // Bodge value
 }
 
-void Shooter::SetFeeder(double speed) {
-	_feederTalon.Set(speed);
+void Shooter::UsePIDOutput(double d) {
+	_shooterTalon.PIDWrite(d);
+	_shooterTalon.Set(FEEDER_SPEED * d);
+}
+
+void Shooter::SetFeederSpeed(double speed) {
+	_feederSpeed = speed;
 }
 
 int Shooter::GetEncoder() {

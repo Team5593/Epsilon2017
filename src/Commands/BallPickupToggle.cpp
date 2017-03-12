@@ -33,6 +33,5 @@ void BallPickupToggle::End() {
 // subsystems is scheduled to run
 void BallPickupToggle::Interrupted() {
 	std::cout << "BallPickupToggle::Interrupted." << std::endl;
-	CommandBase::oi->SetRumbleRight(0.0);
 	_isFinished = true;
 }

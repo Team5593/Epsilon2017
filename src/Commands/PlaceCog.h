@@ -7,14 +7,13 @@
 class PlaceCog : public CommandBase {
 public:
 	PlaceCog();
-	void Initialize();
+	void Initialize(double value);
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
 private:
-	bool ultraLeftFinished;
-	bool ultraRightFinished;
+	double _finishWidthValue = 40;
 };
 
 #endif  // PlaceCog_H

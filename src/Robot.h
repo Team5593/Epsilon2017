@@ -56,6 +56,12 @@ private:
 	std::unique_ptr<Lift> _lifterToggle{ nullptr };
 	std::unique_ptr<DeliverGearCommandGroup> _deliverGearCommandGroup { nullptr };
 	std::unique_ptr<BallPickupToggle> _ballPickupToggle{ nullptr };
+
+	// Autonomous Select
+	int _autonomousNum = 0; // default
+	int _autonomousSide = false; // false = red, true = blue
+	int _outputSide;
+	int _outputNum;
 };
 
 #endif /* ROBOT_H_ */
