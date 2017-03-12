@@ -184,6 +184,7 @@ void Robot::TeleopInit() {
 	CommandBase::oi->SetButtonHeldCommand( DRIVER_SHOOTER_BUTTON, (Command *)_shootBallCommand.get());
 	CommandBase::oi->SetButtonHeldCommand( DRIVER_PICKUP_BUTTON, (Command *)_ballPickupToggle.get());
 	CommandBase::oi->SetButtonHeldCommand( DRIVER_LIFTER_BUTTON, (Command *)_lifterToggle.get());
+	CommandBase::oi->SetButtonHeldCommand( DRIVER_COGPLACE_BUTTON, (Command *)_placeCog.get());
 }
 
 // Runs when robot is in teleop mode
@@ -195,8 +196,8 @@ void Robot::TeleopPeriodic() {
 	CommandBase::shooter->SetSetpoint(CommandBase::oi->GetShooterAxis());
 
 	// Smart dashboard
-	SmartDashboard::PutNumber("Shooter RPM", CommandBase::oi->GetEncoder());
-	SmartDashboard::PutNumber("Shooter Setpoint", CommandBase::oi->GetSetpoint());
+	SmartDashboard::PutNumber("Shooter RPM", CommandBase::shooter->GetEncoder());
+	SmartDashboard::PutNumber("Shooter Setpoint", CommandBase::shooter->GetSetpoint());
 }
 
 // Run once when robot enters test mode
