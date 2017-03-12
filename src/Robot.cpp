@@ -75,6 +75,7 @@ void Robot::RobotPeriodic() {
 	CommandBase::oi->SetGamepadOutput(GAMEPAD_OUTPUT_4, false);
 	CommandBase::oi->SetGamepadOutput(GAMEPAD_OUTPUT_R, false);
 	CommandBase::oi->SetGamepadOutput(GAMEPAD_OUTPUT_B, false);
+
 	// Set Output
 	CommandBase::oi->SetGamepadOutput(_outputNum, true);
 	CommandBase::oi->SetGamepadOutput(_outputSide, true);
@@ -97,10 +98,14 @@ void Robot::DisabledPeriodic() {
 void Robot::AutonomousInit() {
 	std::cout << "AutonomousInit" << std::endl;
 
+	// Reset Sensors
 	CommandBase::driveTrain->EncResetAll();
 	CommandBase::driveTrain->GyroReset();
 
+	// Create vector
 	std::vector<std::pair<AutoCommand_t, double>> commandVec;
+
+	// Set autonomous vector
 	if (_autonomousSide == false) {
 		// RED Side
 		switch(_autonomousNum) {
@@ -156,6 +161,7 @@ void Robot::AutonomousInit() {
 		}
 	}
 
+	// Init and run command group
 	_deliverGearCommandGroup->Initialize(commandVec);
 	_deliverGearCommandGroup->Start();
 }
