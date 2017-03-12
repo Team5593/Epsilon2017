@@ -170,9 +170,9 @@ void Robot::TeleopInit() {
 	std::cout << "TeleopInit" << std::endl;
 
 	// Stop autonomous commands
-	//if (autonomousCommand != NULL) {
-	//	autonomousCommand->Cancel();
-	//}
+	if (_deliverGearCommandGroup != NULL) {
+		_deliverGearCommandGroup->Cancel();
+	}
 	CommandBase::oi->SetButtonHeldCommand( DRIVER_SHOOTER_BUTTON, (Command *)_shootBallCommand.get());
 	CommandBase::oi->SetButtonHeldCommand( DRIVER_PICKUP_BUTTON, (Command *)_ballPickupToggle.get());
 	CommandBase::oi->SetButtonHeldCommand( DRIVER_LIFTER_BUTTON, (Command *)_lifterToggle.get());
