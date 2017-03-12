@@ -188,6 +188,9 @@ void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
 	LiveWindow::GetInstance()->Run();
 	CommandBase::shooter->SetSetpoint(CommandBase::oi->GetShooterAxis());
+
+	SmartDashboard::PutNumber("Shooter RPM", CommandBase::oi->GetEncoder());
+	SmartDashboard::PutNumber("Shooter Setpoint", CommandBase::oi->GetSetpoint());
 }
 
 // Run once when robot enters test mode
