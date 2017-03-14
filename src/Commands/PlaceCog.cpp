@@ -12,7 +12,7 @@ void PlaceCog::Initialize(double value) {
 
 // Called repeatedly when this Command is scheduled to run
 void PlaceCog::Execute() {
-	double speed = -0.45;
+	double speed = 0.45;
 	double heading = (cogPixy->GetX() - 159.5) / (319);
 	std::cout << heading << std::endl;
 	if (heading < 0) {
@@ -37,5 +37,5 @@ void PlaceCog::End() {
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void PlaceCog::Interrupted() {
-	End();
+	driveTrain->TankDrive(0.0, 0.0);
 }
