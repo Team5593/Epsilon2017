@@ -21,6 +21,7 @@ Shooter::Shooter(int shooterChannel, int feederChannel) : frc::PIDSubsystem("Sho
 	_feederTalon{feederChannel},
 	_shooterEncoder{frc::I2C::kOnboard, 0x08}
 {
+	_shooterTalon.SetInverted(true);
 
 }
 
@@ -31,12 +32,12 @@ void Shooter::InitDefaultCommand() {
 
 double Shooter::ReturnPIDInput() {
 	//return -GetEncoder() / SHOOTER_MAX_RPM;
-	return 0.95; // Bodge value
+	return 1; // Bodge value
 }
 
 void Shooter::UsePIDOutput(double d) {
 	_shooterTalon.PIDWrite(d);
-	_shooterTalon.Set(FEEDER_SPEED * d);
+	_feederTalon.Set(FEEDER_SPEED * d);
 }
 
 void Shooter::SetFeederSpeed(double speed) {
