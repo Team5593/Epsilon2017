@@ -31,11 +31,12 @@ void Robot::RobotInit() {
 	_ballPickupToggle = std::make_unique<BallPickupToggle>();
 	_deliverGearCommandGroup = std::make_unique<DeliverGearCommandGroup>();
 	_lifterToggle = std::make_unique<Lift>();
+	_placeCog = std::make_unique<PlaceCog>();
 
 	CommandBase::driveTrain->GyroCalibrate();
 
 	CameraServer::GetInstance()->StartAutomaticCapture("Front Camera" , 0);
-	CameraServer::GetInstance()->StartAutomaticCapture("Hopper Camera", 1);
+	CameraServer::GetInstance()->StartAutomaticCapture("Ball Camera", 1);
 	//CameraServer::GetInstance()->StartAutomaticCapture("Front Floor Facing", 3);
 }
 
@@ -102,33 +103,37 @@ void Robot::AutonomousInit() {
 	CommandBase::driveTrain->EncResetAll();
 	CommandBase::driveTrain->GyroReset();
 
+
+
 	// Create vector
 	std::vector<std::pair<AutoCommand_t, double>> commandVec;
 
+	commandVec.push_back({AutoCommand_t::AutoMoveCommand, -150});
+	/*
 	// Set autonomous vector
 	if (_autonomousSide == false) {
 		// RED Side
 		switch(_autonomousNum) {
 		case 0:
 			// Left Driver Station
-			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
-			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
-			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 108});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, -60});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 100});
 			break;
 		case 1:
 			// Middle Driver Station
-			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
-			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 108});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 100});
 			break;
 		case 2:
 			// Right Driver Station
-			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
-			commandVec.push_back({AutoCommand_t::AutoRotateCommand, -90});
-			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 120});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 60});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 100});
 			break;
 		case 3:
 			// Spare
-			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -150});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 150});
 			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 180});
 			break;
 		}
@@ -138,20 +143,20 @@ void Robot::AutonomousInit() {
 		switch(_autonomousNum) {
 		case 0:
 			// Left Driver Station
-			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
-			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 90});
-			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -120});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, -60});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 100});
 			break;
 		case 1:
 			// Middle Driver Station
-			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
-			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -108});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 100});
 			break;
 		case 2:
 			// Right Driver Station
-			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -64});
-			commandVec.push_back({AutoCommand_t::AutoRotateCommand, -90});
-			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 40});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -108});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 60});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 100});
 			break;
 		case 3:
 			// Spare
@@ -160,6 +165,7 @@ void Robot::AutonomousInit() {
 			break;
 		}
 	}
+	*/
 
 	// Init and run command group
 	_deliverGearCommandGroup->Initialize(commandVec);
@@ -176,8 +182,12 @@ void Robot::TeleopInit() {
 	std::cout << "TeleopInit" << std::endl;
 
 	// Stop autonomous commands
-	if (_deliverGearCommandGroup != NULL) {
+	if (_deliverGearCommandGroup != nullptr) {
 		_deliverGearCommandGroup->Cancel();
+	}
+
+	if (_placeCog != nullptr) {
+		_placeCog->Cancel();
 	}
 
 	// Attach buttons to commands
