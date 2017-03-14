@@ -40,5 +40,6 @@ void AutoMove::End() {
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void AutoMove::Interrupted() {
+	driveTrain->TankDrive(0.0, 0.0);
 }
 
