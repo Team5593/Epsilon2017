@@ -19,6 +19,8 @@ void AutoMove::Execute() {
 		_firstExecute = false;
 	}
 	
+	//std::cout << "AutoMove::Execute " << driveTrain->EncGetLeft() << " " << driveTrain->EncGetRight() << std::endl;
+
 	_leftFinished=fabs(driveTrain->EncGetLeft()) >= fabs(_relativeDistance);
 	_rightFinished=fabs(driveTrain->EncGetRight()) >= fabs(_relativeDistance);
 	double proportion = (driveTrain->GetGyroAngle()) / 90;

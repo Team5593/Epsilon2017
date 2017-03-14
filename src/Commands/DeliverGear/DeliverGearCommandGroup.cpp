@@ -27,7 +27,7 @@ void DeliverGearCommandGroup::Initialize(std::vector<std::pair<AutoCommand_t, do
 		switch(item.first) {
 			case AutoCommand_t::AutoMoveCommand:
 			{
-				std::cout << "AutoMove" << item.second << std::endl;
+				std::cout << "AutoMove " << item.second << std::endl;
 				auto autoMoveCommand = new AutoMove();
 				autoMoveCommand->Initialize(item.second);
 				AddSequential(autoMoveCommand, EXPIRY_SECONDS);
@@ -35,7 +35,7 @@ void DeliverGearCommandGroup::Initialize(std::vector<std::pair<AutoCommand_t, do
 			}
 			case AutoCommand_t::AutoRotateCommand:
 			{
-				std::cout << "AutoRotate" << item.second << std::endl;
+				std::cout << "AutoRotate " << item.second << std::endl;
 				auto autoRotateCommand = new AutoRotate();
 				autoRotateCommand->Initialize(item.second);
 				AddSequential(autoRotateCommand, EXPIRY_SECONDS);
@@ -43,7 +43,7 @@ void DeliverGearCommandGroup::Initialize(std::vector<std::pair<AutoCommand_t, do
 			}
 			case AutoCommand_t::AutoPlaceCogCommand:
 			{
-				std::cout << "AutoRotate" << item.second << std::endl;
+				std::cout << "AutoPlaceCog " << item.second << std::endl;
 				auto autoPlaceCogCommand = new PlaceCog();
 				autoPlaceCogCommand->Initialize(item.second);
 				AddSequential(autoPlaceCogCommand, EXPIRY_SECONDS);

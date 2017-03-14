@@ -61,7 +61,7 @@ private:
 
 	// Autonomous Select
 	int _autonomousNum = 0; // default
-	int _autonomousSide = false; // false = red, true = blue
+	int _autonomousSide = false; // false = blue, true = red
 	int _outputSide;
 	int _outputNum;
 };

@@ -21,7 +21,6 @@ void PlaceCog::Execute() {
 	else {
 		driveTrain->TankDrive(speed, speed - fabs(heading));
 	}
-
 }
 
 // Make this return true when this Command no longer needs to run execute()
@@ -31,11 +30,13 @@ bool PlaceCog::IsFinished() {
 
 // Called once after isFinished returns true
 void PlaceCog::End() {
+	std::cout << "PlaceCog:End" << std::endl;
 	driveTrain->TankDrive(0.0, 0.0);
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void PlaceCog::Interrupted() {
+	std::cout << "PlaceCog::Interrupted" << std::endl;
 	driveTrain->TankDrive(0.0, 0.0);
 }

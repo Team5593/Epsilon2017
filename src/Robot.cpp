@@ -35,24 +35,33 @@ void Robot::RobotInit() {
 
 	CommandBase::driveTrain->GyroCalibrate();
 
-	CameraServer::GetInstance()->StartAutomaticCapture("Front Camera" , 0);
+	//ToDo CameraServer::GetInstance()->StartAutomaticCapture("Front Camera" , 0);
 	//CameraServer::GetInstance()->StartAutomaticCapture("Ball Camera", 1);
 	//CameraServer::GetInstance()->StartAutomaticCapture("Front Floor Facing", 3);
 }
 
-
 // Runs all of the time (including during disabled methods)
 void Robot::RobotPeriodic() {
-	//std::cout << "RobotPeriodic" << std::endl;
+}
 
-	if (CommandBase::oi->GetGamepadInput(GAMEPAD_BUTTON_R)) _autonomousSide = false;
-	else if (CommandBase::oi->GetGamepadInput(GAMEPAD_BUTTON_B)) _autonomousSide = true;
+// Run once when robot enters disabled mode
+void Robot::DisabledInit() {
+	std::cout << "DisabledInit" << std::endl;
 
+	CommandBase::oi->SetRumbleLeft(0.0);
+	CommandBase::oi->SetRumbleRight(0.0);
+}
 
+// Runs when robot is disabled
+void Robot::DisabledPeriodic() {
+	Scheduler::GetInstance()->Run();
+
+	if (CommandBase::oi->GetGamepadInput(GAMEPAD_BUTTON_R)) _autonomousSide = true;
+	else if (CommandBase::oi->GetGamepadInput(GAMEPAD_BUTTON_B)) _autonomousSide = false;
 	switch (_autonomousSide) {
-	case false: _outputSide = GAMEPAD_OUTPUT_R; break;
-	case true: _outputSide = GAMEPAD_OUTPUT_B; break;
-	default: _outputSide = GAMEPAD_OUTPUT_R;
+		case false: _outputSide = GAMEPAD_OUTPUT_B; break;
+		case true: _outputSide = GAMEPAD_OUTPUT_R; break;
+		default: _outputSide = GAMEPAD_OUTPUT_R;
 	}
 
 	if (CommandBase::oi->GetGamepadInput(GAMEPAD_BUTTON_1)) _autonomousNum = 0;
@@ -60,13 +69,12 @@ void Robot::RobotPeriodic() {
 	else if (CommandBase::oi->GetGamepadInput(GAMEPAD_BUTTON_3)) _autonomousNum = 2;
 	else if (CommandBase::oi->GetGamepadInput(GAMEPAD_BUTTON_4)) _autonomousNum = 3;
 
-
 	switch (_autonomousNum) {
-	case 0: _outputNum = GAMEPAD_OUTPUT_1; break;
-	case 1: _outputNum = GAMEPAD_OUTPUT_2; break;
-	case 2: _outputNum = GAMEPAD_OUTPUT_3; break;
-	case 3: _outputNum = GAMEPAD_OUTPUT_4; break;
-	default: _outputNum = GAMEPAD_OUTPUT_1;
+		case 0: _outputNum = GAMEPAD_OUTPUT_1; break;
+		case 1: _outputNum = GAMEPAD_OUTPUT_2; break;
+		case 2: _outputNum = GAMEPAD_OUTPUT_3; break;
+		case 3: _outputNum = GAMEPAD_OUTPUT_4; break;
+		default: _outputNum = GAMEPAD_OUTPUT_1;
 	}
 
 	// Clear Outputs
@@ -82,92 +90,83 @@ void Robot::RobotPeriodic() {
 	CommandBase::oi->SetGamepadOutput(_outputSide, true);
 }
 
-// Run once when robot enters disabled mode
-void Robot::DisabledInit() {
-	std::cout << "DisabledInit" << std::endl;
-
-	CommandBase::oi->SetRumbleLeft(0.0);
-	CommandBase::oi->SetRumbleRight(0.0);
-}
-
-// Runs when robot is disabled
-void Robot::DisabledPeriodic() {
-	Scheduler::GetInstance()->Run();
-}
-
 // Run once when robot enters autonomous mode
 void Robot::AutonomousInit() {
-	std::cout << "AutonomousInit" << std::endl;
+	std::cout << "AutonomousInit 1.2" << std::endl;
 
 	// Reset Sensors
 	CommandBase::driveTrain->EncResetAll();
 	CommandBase::driveTrain->GyroReset();
 
-
-
 	// Create vector
 	std::vector<std::pair<AutoCommand_t, double>> commandVec;
 
-	//commandVec.push_back({AutoCommand_t::AutoMoveCommand, -150});
-	//*
 	// Set autonomous vector
 	if (_autonomousSide == false) {
 		// RED Side
 		switch(_autonomousNum) {
-		case 0:
-			// Left Driver Station
+		case 2://0:
+			std::cout << "RED LEFT" << std::endl;
+			// Left Driver Station (closest to judge's station, forward & right)
 			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 108});
-			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 420});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 60});
 			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 80});
 			break;
-		case 1:
+		case 3: //1:
+			std::cout << "RED MIDDLE" << std::endl;
 			// Middle Driver Station
 			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 108});
-			//commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 100});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 100});
 			break;
-		case 2:
-			// Right Driver Station
+		case 1: //2:
+			std::cout << "RED RIGHT" << std::endl;
+			// Right Driver Station (furtherest from judge's station, forward & left).
 			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 120});
 			commandVec.push_back({AutoCommand_t::AutoRotateCommand, -60});
 			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 80});
 			break;
-		case 3:
+		case 0://3:
+			std::cout << "RED SPARE" << std::endl;
 			// Spare
 			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 150});
-			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 180});
+			//commandVec.push_back({AutoCommand_t::AutoRotateCommand, 180});
 			break;
 		}
 	}
 	else {
 		// BLUE Side
 		switch(_autonomousNum) {
-		case 0:
-			// Left Driver Station
+		case 2: //0:
+			std::cout << "BLUE LEFT" << std::endl;
+			// Left Driver Station (furtherest from judge's station, forward & right).
 			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 120});
-			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 420});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 60});
 			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 80});
 			break;
-		case 1:
+		case 3: //1:
+			std::cout << "BLUE MIDDLE" << std::endl;
 			// Middle Driver Station
 			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 108});
-			//commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 100});
-			break;
-		case 2:
-			// Right Driver Station
-			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 108});
-			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 60});
 			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 100});
 			break;
-		case 3:
+		case 1: //2:
+			std::cout << "BLUE RIGHT" << std::endl;
+			// Right Driver Station (closest to judge's station, forward & left).
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 108});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, -60});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 100});
+			break;
+		case 0: //3:
+			std::cout << "BLUE SPARE" << std::endl;
 			// Spare
-			//commandVec.push_back({AutoCommand_t::AutoMoveCommand, -150});
-			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 80});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 150});
+			//commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 80});
 			break;
 		}
 	}
-	//*/
 
 	// Init and run command group
+	_deliverGearCommandGroup.reset(new DeliverGearCommandGroup());
 	_deliverGearCommandGroup->Initialize(commandVec);
 	_deliverGearCommandGroup->Start();
 }
@@ -182,13 +181,13 @@ void Robot::TeleopInit() {
 	std::cout << "TeleopInit" << std::endl;
 
 	// Stop autonomous commands
-	//if (_deliverGearCommandGroup != nullptr) {
-	//	_deliverGearCommandGroup->Cancel();
-	//}
+	if (_deliverGearCommandGroup != nullptr) {
+		_deliverGearCommandGroup->Cancel();
+	}
 
-	//if (_placeCog != nullptr) {
-	//	_placeCog->Cancel();
-	//}
+	if (_placeCog != nullptr) {
+		_placeCog->Cancel();
+	}
 
 	// Attach buttons to commands
 	CommandBase::oi->SetButtonHeldCommand( DRIVER_SHOOTER_BUTTON, (Command *)_shootBallCommand.get());
@@ -212,7 +211,7 @@ void Robot::TeleopPeriodic() {
 
 // Run once when robot enters test mode
 void Robot::TestInit() {
-	std::cout << "TestInit" << std::endl;
+	std::cout << "TestInit AM 2" << std::endl;
 }
 
 // Runs when robot is in test mode
