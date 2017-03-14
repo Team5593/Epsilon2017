@@ -24,7 +24,7 @@ double OI::GetSpeedAxis() {
 }
 
 double OI::GetShooterAxis() {
-	return (fabs(_gamepad.GetRawAxis(GAMEPAD_SHOOTER_AXIS)));
+	return (_gamepad.GetRawAxis(GAMEPAD_SHOOTER_AXIS)+1)/2;
 }
 
 bool OI::GetDriverButton(int button) {
