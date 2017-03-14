@@ -17,7 +17,7 @@ CommandBase::CommandBase(const std::string &name) :
 void CommandBase::init()
 {
 	CommandBase::driveTrain.reset(new DriveTrain(DRIVETRAIN_LEFT_MOTOR, DRIVETRAIN_RIGHT_MOTOR, DRIVETRAIN_ENC_LEFT_A, DRIVETRAIN_ENC_LEFT_B, DRIVETRAIN_ENC_RIGHT_A, DRIVETRAIN_ENC_RIGHT_B, DRIVETRAIN_ANALOG_GYRO));
-	CommandBase::shooter.reset(new Shooter(SHOOTER_TALON_PIN, 6));
+	CommandBase::shooter.reset(new Shooter(SHOOTER_TALON_PIN, FEEDER_TALON_PIN));
 	CommandBase::ballPickup.reset(new BallPickup(PICKUP_TALON));
 	CommandBase::cogPixy.reset(new CogPixy());
 	CommandBase::lifter.reset(new Lifter(LIFTER_SPARK_LEFT, LIFTER_SPARK_RIGHT));
