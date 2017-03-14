@@ -35,7 +35,7 @@ void Robot::RobotInit() {
 
 	CommandBase::driveTrain->GyroCalibrate();
 
-	//ToDo CameraServer::GetInstance()->StartAutomaticCapture("Front Camera" , 0);
+	CameraServer::GetInstance()->StartAutomaticCapture("Front Camera" , 0);
 	//CameraServer::GetInstance()->StartAutomaticCapture("Ball Camera", 1);
 	//CameraServer::GetInstance()->StartAutomaticCapture("Front Floor Facing", 3);
 }
