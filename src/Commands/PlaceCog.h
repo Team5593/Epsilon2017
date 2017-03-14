@@ -13,7 +13,7 @@ public:
 	void End();
 	void Interrupted();
 private:
-	double _finishWidthValue = 40;
+	double _finishWidthValue = 100;
 };
 
 #endif  // PlaceCog_H
