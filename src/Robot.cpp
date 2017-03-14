@@ -36,7 +36,7 @@ void Robot::RobotInit() {
 	CommandBase::driveTrain->GyroCalibrate();
 
 	CameraServer::GetInstance()->StartAutomaticCapture("Front Camera" , 0);
-	CameraServer::GetInstance()->StartAutomaticCapture("Ball Camera", 1);
+	//CameraServer::GetInstance()->StartAutomaticCapture("Ball Camera", 1);
 	//CameraServer::GetInstance()->StartAutomaticCapture("Front Floor Facing", 3);
 }
 
@@ -108,8 +108,8 @@ void Robot::AutonomousInit() {
 	// Create vector
 	std::vector<std::pair<AutoCommand_t, double>> commandVec;
 
-	commandVec.push_back({AutoCommand_t::AutoMoveCommand, -150});
-	/*
+	//commandVec.push_back({AutoCommand_t::AutoMoveCommand, -150});
+	//*
 	// Set autonomous vector
 	if (_autonomousSide == false) {
 		// RED Side
@@ -117,19 +117,19 @@ void Robot::AutonomousInit() {
 		case 0:
 			// Left Driver Station
 			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 108});
-			commandVec.push_back({AutoCommand_t::AutoRotateCommand, -60});
-			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 100});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 420});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 80});
 			break;
 		case 1:
 			// Middle Driver Station
 			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 108});
-			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 100});
+			//commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 100});
 			break;
 		case 2:
 			// Right Driver Station
 			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 120});
-			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 60});
-			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 100});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, -60});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 80});
 			break;
 		case 3:
 			// Spare
@@ -143,29 +143,29 @@ void Robot::AutonomousInit() {
 		switch(_autonomousNum) {
 		case 0:
 			// Left Driver Station
-			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -120});
-			commandVec.push_back({AutoCommand_t::AutoRotateCommand, -60});
-			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 100});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 120});
+			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 420});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 80});
 			break;
 		case 1:
 			// Middle Driver Station
-			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -108});
-			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 100});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 108});
+			//commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 100});
 			break;
 		case 2:
 			// Right Driver Station
-			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -108});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 108});
 			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 60});
 			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 100});
 			break;
 		case 3:
 			// Spare
-			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -150});
-			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 180});
+			//commandVec.push_back({AutoCommand_t::AutoMoveCommand, -150});
+			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 80});
 			break;
 		}
 	}
-	*/
+	//*/
 
 	// Init and run command group
 	_deliverGearCommandGroup->Initialize(commandVec);
@@ -182,13 +182,13 @@ void Robot::TeleopInit() {
 	std::cout << "TeleopInit" << std::endl;
 
 	// Stop autonomous commands
-	if (_deliverGearCommandGroup != nullptr) {
-		_deliverGearCommandGroup->Cancel();
-	}
+	//if (_deliverGearCommandGroup != nullptr) {
+	//	_deliverGearCommandGroup->Cancel();
+	//}
 
-	if (_placeCog != nullptr) {
-		_placeCog->Cancel();
-	}
+	//if (_placeCog != nullptr) {
+	//	_placeCog->Cancel();
+	//}
 
 	// Attach buttons to commands
 	CommandBase::oi->SetButtonHeldCommand( DRIVER_SHOOTER_BUTTON, (Command *)_shootBallCommand.get());
