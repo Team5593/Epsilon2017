@@ -36,7 +36,7 @@ void Robot::RobotInit() {
 	CommandBase::driveTrain->GyroCalibrate();
 
 	CameraServer::GetInstance()->StartAutomaticCapture("Front Camera" , 0);
-	//CameraServer::GetInstance()->StartAutomaticCapture("Ball Camera", 1);
+	CameraServer::GetInstance()->StartAutomaticCapture("Ball Camera", 1);
 	//CameraServer::GetInstance()->StartAutomaticCapture("Front Floor Facing", 3);
 }
 
@@ -108,22 +108,24 @@ void Robot::AutonomousInit() {
 		case 2://0:
 			std::cout << "RED LEFT" << std::endl;
 			// Left Driver Station (closest to judge's station, forward & right)
-			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 108});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 104});
 			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 60});
-			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 80});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 30});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -4});
 			break;
 		case 3: //1:
 			std::cout << "RED MIDDLE" << std::endl;
 			// Middle Driver Station
-			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 108});
-			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 100});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 120});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -4});
 			break;
 		case 1: //2:
 			std::cout << "RED RIGHT" << std::endl;
 			// Right Driver Station (furtherest from judge's station, forward & left).
-			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 120});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 104});
 			commandVec.push_back({AutoCommand_t::AutoRotateCommand, -60});
-			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 80});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 30});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -4});
 			break;
 		case 0://3:
 			std::cout << "RED SPARE" << std::endl;
@@ -139,22 +141,24 @@ void Robot::AutonomousInit() {
 		case 2: //0:
 			std::cout << "BLUE LEFT" << std::endl;
 			// Left Driver Station (furtherest from judge's station, forward & right).
-			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 120});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 104});
 			commandVec.push_back({AutoCommand_t::AutoRotateCommand, 60});
-			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 80});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 30});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -4});
 			break;
 		case 3: //1:
 			std::cout << "BLUE MIDDLE" << std::endl;
 			// Middle Driver Station
-			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 108});
-			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 100});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 120});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -4});
 			break;
 		case 1: //2:
 			std::cout << "BLUE RIGHT" << std::endl;
 			// Right Driver Station (closest to judge's station, forward & left).
-			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 108});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 104});
 			commandVec.push_back({AutoCommand_t::AutoRotateCommand, -60});
-			commandVec.push_back({AutoCommand_t::AutoPlaceCogCommand, 100});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, 30});
+			commandVec.push_back({AutoCommand_t::AutoMoveCommand, -4});
 			break;
 		case 0: //3:
 			std::cout << "BLUE SPARE" << std::endl;

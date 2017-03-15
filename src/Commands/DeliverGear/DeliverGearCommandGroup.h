@@ -26,7 +26,7 @@
 #include "Commands/AutoMove.h"
 #include "Commands/PlaceCog.h"
 
-const double EXPIRY_SECONDS = 8.0;		// If the auto rotate takes longer than this assume something has gone wrong and terminate the command.
+const double EXPIRY_SECONDS = 5.0;		// If the auto rotate takes longer than this assume something has gone wrong and terminate the command.
 
 class DeliverGearCommandGroup : public CommandGroup {
 public:

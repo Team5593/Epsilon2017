@@ -15,6 +15,7 @@ void BallPickupToggle::Initialize() {
 void BallPickupToggle::Execute() {
 	//std::cout << "BallPickupToggle::Execute." << std::endl;
 	ballPickup->Set(PICKUP_SPEED * _isOn);
+
 	CommandBase::oi->SetRumbleRight(_isOn * 0.5);
 }
 

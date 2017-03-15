@@ -31,6 +31,10 @@ bool OI::GetDriverButton(int button) {
 	return _driverJoy.GetRawButton(DRIVER_SHOOTER_BUTTON);
 }
 
+bool OI::RealGetDriverButton(int button) {
+	return _driverJoy.GetRawButton(button);
+}
+
 void OI::SetRumbleLeft(double value) {
 	_driverJoy.SetRumble(_driverJoy.kLeftRumble, value);
 }

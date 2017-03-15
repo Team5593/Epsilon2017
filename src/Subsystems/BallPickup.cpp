@@ -16,7 +16,14 @@ void BallPickup::InitDefaultCommand() {
 
 void BallPickup::Set(double speed) {
 	_speed = speed;
-	_pickupMotor.Set(_speed);
+	//std::cout << CommandBase::oi->RealGetDriverButton(6) << std::endl;
+	if (CommandBase::oi->RealGetDriverButton(6)) {
+		_pickupMotor.Set(-_speed);
+	}
+	else {
+		_pickupMotor.Set(_speed);
+	}
+
 }
 
 double BallPickup::Get() {

@@ -12,6 +12,7 @@ public:
 	double GetSpeedAxis();
 	double GetShooterAxis();
 	bool GetDriverButton(int button);
+	bool RealGetDriverButton(int button);
 	void SetRumbleLeft(double value);
 	void SetRumbleRight(double value);
 	void SetButtonPressedCommand(int buttonNum, Command * command);
